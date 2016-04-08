@@ -1,0 +1,82 @@
+cpc-header-nav{
+	div.row{
+		border-bottom: 1px solid $graydarkcolor;
+		.heading{
+			font-size: 2rem;
+		}
+		.link{
+			color: $primarycolor;
+			font-size: 1.3rem;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+		.fa:hover, .self:hover, .team:hover{
+			cursor: pointer;
+		}
+		.fa, .self, .team{
+			display: table-cell;
+			vertical-align: middle;
+			padding: 14px 10px 10px 10px;
+		}
+		.fa.active, .self.active, .team.active{
+			border-bottom: 4px solid $primarycolor;
+		}
+	}
+
+  #quicklinkContainer
+  {
+    background-color: #fff;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    top: 35px;
+    right: 0px;
+    width: 340px;
+    z-index: 1;
+    display: none; // Enable this after jquery implementation
+    border-radius: 10px;
+  }
+  // Popup Arrow
+  #quicklinkContainer:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 10px solid black;
+    border-color: transparent transparent white;
+    margin-top: -20px;
+    right: 45px;
+
+  }
+  #quicklinkBody
+  {
+    padding: 10px 0px 0px 0px;
+    max-height:300px;
+    overflow-y: auto;
+  }
+  #quicklinkFooter
+  {
+    font-family: 'CiscoSansTT';
+    font-size: 14px;
+    color:#39a5e3;
+    background-color: #ffffff;
+    text-align: right;
+    padding: 15px;
+    border-top: 1px solid #dddddd;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 54px;
+  }
+  #quicklink{
+    min-height: 30px;
+    padding: 10px 5px 5px 5px;
+  }
+  #quicklink:hover{
+    background-color: #39a5e3;
+  }
+
+}

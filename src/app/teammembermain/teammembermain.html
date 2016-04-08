@@ -1,0 +1,14 @@
+<div><span style="display:none">{{hideTeamMemberView()}}</span>
+<div ng-if="showTeamView">
+<cpc-header-nav heading="{{username | usernametofirstname}}{{'TEAM_MEMBER_HEADER_NAV.HEADING' | translate}}" link-heading="{{'TEAM_MEMBER_HEADER_NAV.LINK_HEADING' | translate}}" link="#"></cpc-header-nav>
+<cpc-Profile></cpc-Profile>
+<cpc-Team  ></cpc-Team>
+<cpc-Alternate-Team id="altTeam" style="display:none"></cpc-Alternate-Team>
+<cpc-Quick-Links id="cpcQuickLinksComponent" ></cpc-Quick-Links>
+<!-- <cpc-Metrics id="cpcMetricsComponent"></cpc-Metrics> -->
+<cpc-Team-Profile></cpc-Team-Profile>
+<!-- Dashboard -->
+</div>
+<div ui-view=""></div>
+</div>
+

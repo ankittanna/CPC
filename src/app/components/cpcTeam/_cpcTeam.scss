@@ -1,0 +1,48 @@
+cpc-Team{
+	padding:20px;
+    margin-top: 50px;
+}
+div.greyBox{
+   background-color: #f8f8f8;
+    min-height: 281px;
+    padding: 20px 5px 20px 5px;
+}
+div.teamImages{
+    position:relative;
+    width:105px;
+    height:75px;
+    margin:0 auto;
+}
+
+.teamName{
+    font-family: 'CiscoSansTT';
+    font-size: 13px;
+    color: #646871;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+.teamPersonImage {
+  height: 68px;
+  overflow: hidden;
+  position: relative;
+  width: 65px;
+  float:left;
+}
+
+.teamPersonName{
+ margin-left: 5px;
+ margin-top: 18px;
+}
+
+.teamIcons {
+  left: 60%;
+  position: absolute;
+  top: 62%;
+}
+
+.popover{
+  width: 768px;
+  max-width: 768px !important
+}

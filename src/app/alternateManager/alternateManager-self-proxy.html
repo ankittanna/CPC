@@ -1,0 +1,159 @@
+<div class="clearfix">&nbsp;</div>
+<div class="row">
+  <div class="col-xs-12">
+    <!-- <div class="col-xs-12">
+      <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Details</span></label>
+    </div> -->
+  </div>
+  <!-- <div class="clearfix">&nbsp;</div> -->
+  <div class="col-xs-12">
+    <div class="col-xs-12">
+      <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Alternate Manager For</span></label>
+      <label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+    </div>
+  </div>
+  <!-- <div class="clearfix">&nbsp;</div> -->
+  <div class="col-xs-12">
+    <span class="dropdown col-lg-6 col-md-6 col-sm-7 col-xs-11" dropdown ng-show="!vm.selectedTeamMemberFullName.length">
+      <button ng-disabled="true" id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="vm.isFullTeamFeedbackSelected">
+        <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.loading}}{{vm.selectedTeamMember}}</label>
+      </button>
+    </span>
+    <span class="dropdown col-lg-6 col-md-6 col-sm-7 col-xs-11" dropdown ng-show="vm.selectedTeamMemberFullName.length">
+      <button ng-disabled="true" id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="vm.isFullTeamFeedbackSelected">
+        <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMemberFullName}}</label>
+      </button>
+    </span>
+  </div>
+</div>
+
+<!-- <div class="clearfix">&nbsp;</div> -->
+
+<div ng-show="vm.isAddProxyManagerIsDisabled" >
+  <div class="col-xs-12">
+    <label class="fontSize16 fontCiscoSansTT ng-scope"><span class="ng-scope">Manager Name</span></label>
+    <label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+  </div>
+  <div class="col-xs-12" ng-show="!vm.feedbackAboutFullName.length">
+    <div class="displayInlineBlock floatLeft">
+      <div class="img-circle img-responsive profilePhotoSmall floatLeft">
+        <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.searchTitle}}.jpg"/>
+      </div>
+      <label class="fontSize14 fontCiscoSansTT fontColor0096d5 floatLeft">{{vm.loading}}({{vm.searchTitle}})</label>
+    </div>
+  </div>
+
+  <div class="col-xs-12" ng-show="vm.feedbackAboutFullName.length">
+    <div class="displayInlineBlock floatLeft">
+      <div class="img-circle img-responsive profilePhotoSmall floatLeft">
+        <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.searchTitle}}.jpg"/>
+      </div>
+      <label class="fontSize14 fontCiscoSansTT fontColor0096d5 floatLeft">{{vm.feedbackAboutFullName}}</label>
+    </div>
+  </div>
+
+</div>
+
+<div ng-show="!vm.isAddProxyManagerIsDisabled">
+  <div class="col-xs-12">
+    <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Manager Name</span></label>
+  </div>
+  <!-- <div class="clearfix">&nbsp;</div> -->
+  <div class="col-xs-12">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-7 col-xs-11">
+
+        <form name="form">
+
+          <tags-input ng-model="vm.searchTitle"
+                      display-property="username"
+                      placeholder="Manager Name"
+                      replace-spaces-with-dashes="false"
+                      add-on-paste="true"
+                      paste-split-pattern=";">
+            <auto-complete source="vm.loadTags($query)"
+                           min-length="0"
+                           max-results-to-show="30"
+                           debounce-delay="900"
+                           template="autocomplete-template">
+            </auto-complete>
+          </tags-input>
+
+          <script type="text/ng-template" id="autocomplete-template">
+            <div class="left-panel">
+            </div>
+            <div class="right-panel">
+              <span ng-bind-html="$highlight($getDisplayText())"></span>
+              <span>{{data.firstName}}</span>
+              <span>{{data.lastName}}&nbsp;({{data.username}}@cisco.com)</span>
+            </div>
+          </script>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="clearfix">&nbsp;</div> -->
+<div class="col-xs-6">
+  <div class="clearfix">&nbsp;</div>
+  <strong>Start Date</strong>
+</div>
+<div class="col-xs-6">
+  <div class="clearfix">&nbsp;</div>
+  <strong>End Date</strong>
+</div>
+<div class="clearfix">&nbsp;</div>
+
+<div class="col-xs-6">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="input-group">
+        <input ng-disabled="true" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtStart" is-open="openedStart" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+          <button ng-disabled="vm.isStartDateDisabled" type="button" class="btn btn-default" ng-click="openStart($event)"><i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-6">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="input-group">
+        <input ng-disabled="true" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtEnd" is-open="openedEnd" min-date="dtStart" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+          <button ng-required="true" ng-disabled="vm.isEndDateDisabled" type="button" class="btn btn-default" ng-click="openEnd($event)"><i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 textAlignRight">
+  <div ng-switch="vm.objectStoreData.actionType">
+    <div ng-switch-when="VIEWSELF">
+      <button  class="shareWithTeamButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Go Back</span></button>
+    </div>
+    <div ng-switch-when="VIEW">
+      <button  class="shareWithTeamButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Go Back</span></button>
+    </div>
+    <div ng-switch-when="EDIT">
+      <button class="shareWithTeamButton marginTop20" ng-click="vm.update()">Update & Allocate</button>
+      <button  class="cancelButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Cancel</span></button>
+    </div>
+    <div ng-switch-when="DEALLOCATE">
+      <button class="shareWithTeamButton marginTop20" ng-click="vm.deallocate()">Deallocate</button>
+      <button  class="cancelButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Cancel</span></button>
+    </div>
+    <div ng-switch-when="VIEWMODAL">
+      <button ng-disabled="{{form.tags.$error.maxTags}}" class="shareWithTeamButton marginTop20" ng-click="vm.assignManager()"><span class="ng-scope">Allocate</span></button>
+      <button class="cancelButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Cancel</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>

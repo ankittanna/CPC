@@ -1,0 +1,92 @@
+cpc-conversation-current div {
+  .conversation-box {
+  	width: 100%;
+  	min-height: 120px;
+  	cursor: pointer;
+  	
+  	.date{
+  		padding-top: 5px;
+  		font-size: 1.2rem;
+  	}
+  	.detail{
+  		font-size: 1.4 rem;
+  	}
+    &.red {
+      border-top: 4px solid #d76631;
+      .fa{
+      	color: black;
+      }
+      background-color: #F8F8F8;
+    }
+    &.green {
+      border-top: 4px solid #93c85e;
+      .fa{
+      	color: green;
+      }
+      background-color: #F8F8F8;
+    }
+    &.dashed {
+      border: 1px dashed #D4D3D3;
+    }
+  }
+}
+
+.fontSize75px
+{
+	font-size:75px;
+}
+
+.fontColorB9B9BF
+{
+	color: #B9B9BF;
+}
+
+.marginTop10per
+{
+	margin-top:20%;
+}
+
+.marginBottom100
+{
+	margin-bottom: 100px;
+}
+
+.marginTop40
+{
+	margin-top: 40px;
+}
+
+.marginBottom20
+{
+	margin-bottom: 20px;
+}
+
+.verticalAlignMiddle
+{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.greenCircleDiv
+{
+	height: 20px;
+	width: 20px;
+	color:#FFFFFF;
+	background-color:#7CBC59;
+	border:1px solid #7CBC59;
+	border-radius:20px;
+	text-align:center;
+	font-size:13px;
+}
+
+.dashedDiv
+{
+  border: 2px #c4c7cc dashed;
+}
+
+.pullDivBottom
+{
+  position:absolute;
+  bottom: 0;
+}

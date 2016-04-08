@@ -1,0 +1,98 @@
+<div class="ui-view container main-container ng-scope" id="exprotPDF">
+  <div class="container-fluid">
+  <div  class="col-xs-12">
+    <div class="table-responsive">
+      <div style="font-size:16px;font-weight:bold;color:#000000;">
+        {{vm.currentConversation.fy}} - {{vm.currentConversation.convAboutFullName}}
+      </div>
+      <div class="col-xs-6 padding-side-0" style="padding: 10px 0;">
+        <span class="heading" ng-bind="vm.heading"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="link" ng-bind="vm.linkHeading"></span>
+      </div>
+      <div class="col-xs-6 padding-side-0">
+        <div class="pull-right displayTableRow" id="selfTeamNavTab">
+          <span class="fa fa-print edit padding-right-20 hide-not-screen pointer" ng-click="vm.printWindow()"></span>
+          <span class="fa fa-edit print padding-right-20 hide-not-screen pointer" ng-click="vm.exportPDF()"></span>
+        </div>
+      </div>
+      <table class="table table-striped" border="1">
+        <thead>
+
+        <tr>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_NAME_LABEL"></label>
+          </th>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_MAILID_LABEL"></label>
+          </th>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.MANAGER_NAME_LABEL"></label>
+          </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+          <td><label class="fontSize14 fontCiscoSansTT">{{vm.currentConversation.convAboutFullName}}</label> </td>
+          <td> <label class="fontSize14 fontCiscoSansTT"></label></td>
+          <td> <label class="fontSize14 fontCiscoSansTT">{{vm.myManager}}</label></td>
+
+
+        </tr>
+        </tbody>
+      </table>
+      <div ng-hide="vm.currentConversation.conversation.length <= 0">
+                  <div style="font-size:14px;font-weight:bold;color:#000000;">
+                    Conversations
+                  </div>
+                  <table class="table table-striped" border="1">
+
+                    <tbody>
+                    <tr>
+
+                      <td style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label> </td>
+                      <td> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.currentConversation.topicTitle}}</td>
+
+                      <td>
+                        <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10" ng-repeat="tag in vm.currentConversation.tags">{{tag}}</label>
+                      </td>
+
+                    </tr>
+
+                    </tbody>
+                  </table>
+
+                <table style="max-width: 100%;width:100%" border="0">
+
+
+                  <tr ng-repeat="conversationObject in vm.currentConversation.conversation">
+                  <td>
+                    <table  class="table table-striped" style=" border: 1px solid #000;">
+                      <tr>
+
+                            <td style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT">{{conversationObject.createdByFullName}}</label> </td>
+                            <td align="right"> <label class="fontSize14 fontCiscoSansTT">{{vm.translateDateAndTime(conversationObject.createdOn)}}</label></td>
+                      </tr>
+                      <tr>
+
+                            <td colspan="2"> <div class="fontSize16 fontCiscoSansTT" ng-bind-html="conversationObject.comments | sanitize"></div></td>
+                      </tr>
+
+                      </table>
+                      </td>
+                      </tr>
+
+                </table>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+ </div>
+
+<div id="exprotPDFCanvas">
+
+</div>

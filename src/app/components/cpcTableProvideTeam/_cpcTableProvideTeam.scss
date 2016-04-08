@@ -1,0 +1,25 @@
+cpc-table-provide-team {
+  .table-provide-feedback {
+    thead tr th:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.overviewFeedbackCount
+{
+	height:70px;
+	width:70px;
+	text-align: center;
+	font-size: 30px;
+	color: #FFFFFF;
+	margin: 0 auto;
+}
+
+.feedbackCountCell:hover
+{
+	background-color: #0096D6;
+	color: #FFFFFF;
+	font-weight: bold;
+	cursor: pointer;
+}

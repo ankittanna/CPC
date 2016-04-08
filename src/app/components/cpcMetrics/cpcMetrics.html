@@ -1,0 +1,25 @@
+<div class="col-xs-12 padding25">
+  <div class="pull-right">
+    <!-- <select ng-model="vm.myColor" ng-options="color.name for color in vm.colors" ng-change="vm.changedValue(vm.myColor)" ></select> -->
+  </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="text-align:center;margin:0 auto;">
+  <label class="metricsFont" translate="METRICS.TEAM"></label>
+  <highchart id="teamMetrics" config="vm.chartConfigTeam"></highchart>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="text-align:center;margin:0 auto;">
+  <label class="metricsFont" translate="METRICS.SELF"></label>
+  <highchart id="myMetrics" config="vm.chartConfig"></highchart>
+</div>
+<div class="col-xs-12 legendBlock">
+  <div class="col-xs-6" style="text-align:right;">
+    <label class="legend" translate="LEGEND.DEV"></label>
+    <br/>
+    <label class="legend" translate="LEGEND.PER"></label>
+  </div>
+  <div class="col-xs-6">
+    <label class="legend" translate="LEGEND.ALI">Ali = Alignment</label>
+    <br/>
+    <label class="legend" translate="LEGEND.YOU">You = You(Employee)</label>
+  </div>
+</div>

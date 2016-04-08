@@ -1,0 +1,154 @@
+<!doctype html>
+<html ng-app="cpccore">
+
+<head>
+  <meta charset="utf-8">
+  <title>cpccore</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+  <link rel="stylesheet" href="app/fonts.css">
+  <link rel="stylesheet" href="app/vendor.css">
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+  <link rel="stylesheet" href="bower_components/flag-icon-css/css/flag-icon.min.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="app/index.css">
+  <!-- endinject -->
+  <!-- endbuild -->
+</head>
+
+<body ng-controller="MainCtrl" ng-click="HidePopup();">
+  <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <cpc-sidebar></cpc-sidebar>
+  <cpc-header></cpc-header>
+  <!-- <cpc-conversation-current></cpc-conversation-current>
+  <cpc-feedback-overview-count></cpc-feedback-overview-count> -->
+
+  <div ui-view class="container main-container padding-side-0"></div>
+
+  <div class="clearfix"></div>
+
+<cpc-Footer></cpc-Footer>
+  <script src="lib/tinymce/tinymce.min.js"></script>
+  <script src="lib/tinymce/plugins/paste/plugin.min.js"></script>
+  <!-- build:js(src) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="bower_components/Chart.js/Chart.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+  <script src="bower_components/highcharts-release/highcharts.js"></script>
+  <script src="bower_components/highcharts-release/highcharts-more.js"></script>
+  <script src="bower_components/highcharts-release/modules/exporting.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-modal-service/dst/angular-modal-service.js"></script>
+  <script src="lib/angular-breadcrumb.js"></script>
+  <script src="lib/tinymce_spellchecker.js"></script>
+  <script src="bower_components/lodash/lodash.min.js"></script>
+  <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+  <script src="bower_components/angular-growl-v2/build/angular-growl.min.js"></script>
+  <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+  <script src="bower_components/angular-breadcrumb/dist/angular-breadcrumb.min.js"></script>
+  <script src="bower_components/moment/min/moment.min.js"></script>
+  <script src="bower_components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+  <!-- inject:js -->
+
+  <script src="app/index.js"></script>
+  <script src="app/services/data.service.js"></script>
+  <script src="app/services/objectStore.service.js"></script>
+  <script src="app/services/employeeDetails.service.js"></script>
+  <script src="app/components/cpcAjaxLoader/cpcAjaxLoader.directive.js"></script>
+  <script src="app/components/cpcTinyMce/cpcTinyMce.directive.js"></script>
+  <script src="app/components/cpcTimelineFilter/cpcTimelineFilter.directive.js"></script>
+  <script src="app/components/cpcTeamProfile/tabs.js"></script>
+  <script src="app/components/cpcTeamProfile/cpcTeamProfile.directive.js"></script>
+  <script src="app/components/cpcTeam/cpcTeam.directive.js"></script>
+  <script src="app/components/cpcSidebar/cpcSidebar.directive.js"></script>
+  <script src="app/components/cpcQuickLinks/cpcQuickLinks.directive.js"></script>
+  <script src="app/components/cpcProfile/cpcProfile.directive.js"></script>
+  <script src="app/components/cpcModalConversationTable/cpcModalConversationTable.directive.js"></script>
+  <script src="app/components/cpcModalConversationTable/cpcTeammemberModalConversationTable.directive.js"></script>
+  <script src="app/components/cpcMobileTeamProfile/cpcMobileTeamProfile.directive.js"></script>
+  <script src="app/components/cpcMetrics/cpcMetrics.directive.js"></script>
+  <script src="app/components/cpcHeaderNav/cpcHeaderNav.directive.js"></script>
+  <script src="app/components/cpcHeader/cpcHeader.directive.js"></script>
+  <script src="app/components/cpcFooter/cpcFooter.directive.js"></script>
+  <script src="app/components/cpcConversationTable/cpcConversationTable.directive.js"></script>
+  <script src="app/components/cpcConversationTable/cpcTeamMemberConversationTable.directive.js"></script>
+  <script src="app/components/cpcConversationCurrent/cpcConversationCurrent.directive.js"></script>
+  <script src="app/components/cpcConversationCurrent/cpcTeamMemberConversationCurrent.directive.js"></script>
+  <script src="app/components/cpcConversationObject/cpcConversationObject.directive.js"></script>
+  <script src="app/components/cpcTeamConversationView/cpcTeamConversationView.directive.js"></script>
+  <script src="app/components/cpcConversation/cpcConversation.directive.js"></script>
+  <script src="app/components/cpcConversation/cpcConversationRespond.directive.js"></script>
+  <script src="app/components/cpcConversationView/cpcConversationView.directive.js"></script>
+  <script src="app/components/cpcTeamConversation/cpcTeamConversation.directive.js"></script>
+  <script src="app/components/cpcConversationTable/cpcTeamConversationDraftTable.directive.js"></script>
+  <script src="app/components/cpcAlternateTeam/cpcAlternateTeam.directive.js"></script>
+  <script src="app/timeline/timelineview.controller.js"></script>
+  <script src="app/timeline/timelineteam.controller.js"></script>
+  <script src="app/timeline/timelineself.controller.js"></script>
+  <script src="app/timeline/timeline.controller.js"></script>
+  <script src="app/main/main.controller.js"></script>
+  <script src="app/teammembermain/teammembermain.controller.js"></script>
+  <script src="app/conversations/conversations.controller.js"></script>
+  <script src="app/feedback/feedback.controller.js"></script>
+  <script src="app/components/cpcFeedbackOverviewCount/cpcFeedbackOverviewCount.directive.js"></script>
+  <script src="app/components/cpcViewFeedback/cpcViewFeedback.directive.js"></script>
+  <script src="app/components/cpcTeamFeedback/cpcTeamFeedback.directive.js"></script>
+  <script src="app/components/cpcTableRecieveTeam/cpcTableRecieveTeam.directive.js"></script>
+  <script src="app/components/cpcTableRecieve/cpcTableRecieve.directive.js"></script>
+  <script src="app/conversationdetails/conversationdetails.controller.js"></script>
+  <script src="app/components/cpcTableProvideTeam/cpcTableProvideTeam.directive.js"></script>
+  <script src="app/components/cpcTableProvide/cpcTableProvide.directive.js"></script>
+  <script src="app/components/cpcFeedbackTinyMce/cpcFeedbackTinyMce.directive.js"></script>
+  <script src="app/components/cpcFeedbackTabs/cpcFeedbackTabs.directive.js"></script>
+  <script src="app/components/cpcFeedback/cpcFeedback.directive.js"></script>
+  <script src="app/feedback/feedback.controller.js"></script>
+  <script src="app/components/cpcTeamProfile/cpcTeamProfile.controller.js"></script>
+  <script src="app/services/dateTime.service.js"></script>
+  <script src="app/alternateManager/alternateManagerteam.controller.js"></script>
+  <script src="app/alternateManager/alternateManagerself.controller.js"></script>
+  <script src="app/alternateManager/alternateManager.controller.js"></script>
+  <script src="app/components/cpcTableAlternate/cpcTableAlternate.directive.js"></script>
+  <script src="app/alternateManager/alternateManagerTeamProxy.controller.js"></script>
+  <script src="app/alternateManager/alternateManagerSelfProxy.controller.js"></script>
+  <script src="app/components/cpcAllNotifications/cpcAllNotifications.directive.js"></script>
+  <script src="app/notifications/notifications.controller.js"></script>
+  <script src="app/feedbackpdf/feedbackpdf.controller.js"></script>
+  <script src="app/components/cpcPdfFeedback/cpcPdfFeedback.directive.js"></script>
+  <script src="app/feedbackpdfteam/feedbackpdfteam.controller.js"></script>
+  <script src="app/components/cpcPdfTeamFeedback/cpcPdfTeamFeedback.directive.js"></script>
+  <script src="lib/jsPDF/dist/jspdf.min.js"></script>
+  <script src="lib/jsPDF/plugins/html2canvas.js"></script>
+  <script src="app/conversationpdf/conversationpdf.controller.js"></script>
+  <script src="app/components/cpcPdfConversation/cpcPdfConversation.directive.js"></script>
+  <!-- endinject -->
+  <!-- inject:partials -->
+  <!-- angular templates will be automatically converted in js and inserted here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</body>
+
+</html>

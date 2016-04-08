@@ -1,0 +1,89 @@
+cpc-all-notification {
+  header {
+    background-color: $graydarkcolor;
+    div.row {
+      padding: 8px 0 8px 0;
+      span.badge {
+        background-color: $primarycolor;
+        top: -10px;
+        left: -14px;
+      }
+      span.heading {
+        font-size: 1.8rem;
+        margin-left: 20px;
+      }
+      span.fa-bell {
+        padding-left: 20px;
+      }
+      button.dropdown-toggle {
+        border-radius: 14px;
+      }
+      button > span.flag-icon {
+        border-radius: 50%;
+      }
+      .menuButton{
+        background-color: #0096d5;
+        padding: 15px 10px 15px 10px;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+#notificationContainer
+{
+  background-color: #fff;
+  border: 1px solid rgba(100, 100, 100, .4);
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  overflow: visible;
+  position: absolute;
+  top: 35px;
+  right: 0px;
+  z-index: 1;
+  display: none; // Enable this after jquery implementation
+  border-radius: 10px;
+}
+// Popup Arrow
+#notificationContainer:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  color: transparent;
+  border: 10px solid black;
+  border-color: transparent transparent white;
+  margin-top: -20px;
+  right: 45px;
+
+}
+
+#notificationsBody
+{
+  padding: 10px 0px 0px 0px;
+  max-height:300px;
+  overflow-y: auto;
+}
+#notificationFooter
+{
+  font-family: 'CiscoSansTT';
+  font-size: 14px;
+  color:#39a5e3;
+  background-color: #ffffff;
+  text-align: right;
+  padding: 15px;
+  border-top: 1px solid #dddddd;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 25px;
+}
+#notification{
+  min-height: 54px;
+  
+}
+#notification:hover{
+  background-color: #39a5e3;
+}
+.marginLeft0{
+  margin-left: -20px;
+}

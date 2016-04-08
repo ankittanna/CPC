@@ -1,0 +1,112 @@
+<div class="ui-view container main-container ng-scope" id="exprotPDF">
+  <div class="container-fluid">
+  <div  class="col-xs-12">
+    <div class="table-responsive">
+      <div style="font-size:16px;font-weight:bold;color:#000000;">
+        {{vm.feedbackData.fy}} - {{vm.feedbackAboutByFullName}}
+      </div>
+      <div class="col-xs-6 padding-side-0" style="padding: 10px 0;">
+        <span class="heading" ng-bind="vm.heading"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="link" ng-bind="vm.linkHeading"></span>
+      </div>
+      <div class="col-xs-6 padding-side-0">
+        <div class="pull-right displayTableRow" id="selfTeamNavTab">
+          <span class="fa fa-print edit padding-right-20 hide-not-screen pointer" ng-click="vm.printWindow()"></span>
+          <span class="fa fa-edit print padding-right-20 hide-not-screen pointer" ng-click="vm.exportPDF()"></span>
+        </div>
+      </div>
+      <table class="table table-striped" border="1">
+        <thead>
+
+        <tr>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_NAME_LABEL"></label>
+          </th>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.HR_MANAGER_NAME_LABEL"></label>
+          </th>
+          <th style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.MANAGER_NAME_LABEL"></label>
+          </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+          <td><label class="fontSize14 fontCiscoSansTT">{{vm.feedbackAboutByFullName}}</label> </td>
+          <td> <label class="fontSize14 fontCiscoSansTT"></label></td>
+          <td> <label class="fontSize14 fontCiscoSansTT">{{vm.myManager}}</label></td>
+
+
+        </tr>
+        </tbody>
+      </table>
+      <div ng-hide="vm.feedbackData.requester.length <= 0">
+                  <div style="font-size:14px;font-weight:bold;color:#000000;" translate="FEEDBACK.FEEDBACK_PDF_REQUEST_FEEDBACK">
+                  </div>
+                  <table class="table table-striped" border="1">
+
+                    <tbody>
+                    <tr>
+
+                      <td style="width:25%; font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.TABLE_REQUESTED_BY"></label> </td>
+                      <td style="width:25%;"> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackRequesterFullName}}</td>
+                      <td style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.TABLE_REQUESTED_ON"></label> </td>
+                      <td style="width:25%;"> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackRequestedOnDate}}</td>
+
+                    </tr>
+                    <tr>
+
+                      <td style="width:25%;font-size:14px;font-weight:bold;color:#000000;" ><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.DESCRIPTION"></label> </td>
+
+                      <td colspan="3"> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackData.description}}</td>
+
+                    </tr>
+                    <tr>
+
+                      <td style="font-size:14px;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ATTACHMENT"></label></td>
+
+
+                    </tr>
+                    </tbody>
+                  </table>
+      </div>
+      <div ng-hide="isRespond===false">
+                  <div style="font-size:14px;font-weight:bold;color:#000000;" translate="FEEDBACK.FEEDBACK_PDF_RESPONSE_FEEDBACK">
+                  </div>
+                    <table class="table table-striped" border="1">
+
+                      <tbody>
+                      <tr>
+
+                        <td style="width:25%;font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.FEEDBACK_PDF_PROVIDED_BY"></label> </td>
+                        <td style="width:25%;"> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackProviderFullName}}</td>
+                        <td style="width:25%;font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.FEEDBACK_PDF_PROVIDED_ON"></label> </td>
+                        <td style="width:25%;""> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackReceivedOnDate}}</td>
+
+                      </tr>
+                      <tr>
+
+                        <td style="font-size:14px;font-weight:bold;color:#000000;" ><label class="fontSize14 fontCiscoSansTT" translate="FEEDBACK.FEEDBACK_PDF_FEEDBACK"></label> </td>
+
+                        <td style="font-size:14px;color:#000000;" colspan="3"> <label class="fontSize14 fontCiscoSansTT"></label>{{vm.feedbackData.feedbackResponse}}</td>
+
+                      </tr>
+                      <tr>
+
+                        <td style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ATTACHMENT"></label></td>
+
+
+                      </tr>
+                      </tbody>
+                    </table>
+        </div>
+    </div>
+  </div>
+</div>
+ </div>
+
+<div id="exprotPDFCanvas">
+
+</div>

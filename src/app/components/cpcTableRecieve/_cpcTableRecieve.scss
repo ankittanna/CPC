@@ -1,0 +1,44 @@
+cpc-table-recieve {
+  thead tr th:hover{
+    cursor: pointer;
+  }
+  .heading1:after, .heading2:after, .heading3:after, .heading4:after, .heading5:after {
+    position: absolute;
+    font-family: FontAwesome;
+    bottom: 5px;
+    right: 20px;
+    content: "\f0dc";
+    color: #222;
+    font-size: 18px;
+  }
+
+  .true .heading1:after, .true .heading2:after, .true .heading3:after, .true .heading4:after, .true .heading5:after {
+    position: absolute;
+    font-family: FontAwesome;
+    bottom: 5px;
+    right: 20px;
+    content: "\f0dd";
+    color: #222;
+    font-size: 18px;
+  }
+
+  .false .heading1:after, .false .heading2:after, .false .heading3:after, .false .heading4:after, .false .heading5:after {
+    position: absolute;
+    font-family: FontAwesome;
+    bottom: 5px;
+    right: 20px;
+    content: "\f0de";
+    color: #222;
+    font-size: 18px;
+  }
+
+  div .pagination{
+    margin: 0;
+    li.disabled a:hover{
+      cursor:not-allowed !important;
+    }
+  }
+  i.form-control-feedback{
+    top: 5px !important;
+  }
+}

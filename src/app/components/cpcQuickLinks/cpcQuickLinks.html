@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+    	<div class="col-xs-12 marginTop50 marginBottom50 paddingOverride">
+    	<div ng-show="!vm.teamMemberHome">
+    		<div class="col-xs-{{userProfile.isPeopleManager==='Y' || userProfile.isAlternateMgr == true?6:12}} paddingOverride">
+                <div class="col-xs-12 padding10 centerAlign">
+                    <label class="titleFont" translate="HEADER_NAV.SELF"></label>
+                    <hr class="hrule visible-md visible-lg" ng-show="{{(userProfile.isPeopleManager === 'Y' || userProfile.isAlternateMgr == true) ? true:false}}">
+                </div>
+                <div class="col-xs-12 col-sm-{{userProfile.isPeopleManager==='Y' || userProfile.isAlternateMgr == true?12:6}} col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.navigateFeedback('self')">
+                    <div class="col-xs-12"></div>
+                    <div></div>
+                    <img src="/client/assets/images/feedback-round-64px.png"/>
+                    <label class="qlFont" translate="QUICK_LINKS.SELF_FEEDBACK" style="height:78px"></label>
+                </div>
+                <div class="col-xs-12 col-sm-{{userProfile.isPeopleManager==='Y' || userProfile.isAlternateMgr == true?12:6}} col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="loadNewConvesration('self')">
+                    <img src="/client/assets/images/sync-round-64px.png"/>
+                    <label class="qlFont" translate="QUICK_LINKS.SELF_SYNC"></label>
+                </div>
+            </div>
+            <div class="col-xs-6 paddingOverride pointer" ng-show="{{userProfile.isPeopleManager === 'Y' || userProfile.isAlternateMgr == true? true:false}}">
+                <div class="col-xs-12 padding10 centerAlign">
+                    <label class="titleFont" translate="HEADER_NAV.TEAM"></label>
+                    <hr class="hrule visible-md visible-lg" ng-show="{{userProfile.isPeopleManager === 'Y' || userProfile.isAlternateMgr == true? true:false}}">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.navigateFeedback('team')">
+                    <img src="/client/assets/images/feedback-round-64px.png"/>
+                    <label class="qlFont" translate="QUICK_LINKS.TEAM_FEEDBACK" style="height:78px"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="loadNewConvesration('team')">
+                    <img src="/client/assets/images/sync-round-64px.png"/>
+                    <label class="qlFont" translate="QUICK_LINKS.TEAM_SYNC"></label>
+                </div>
+            </div>
+           </div>
+           <div ng-show="vm.teamMemberHome">
+    		<div class="col-xs-{{vm.teamMemberuserObj.isPeopleManager === 'Y' ? 6:12}} paddingOverride pointer">
+    			<div class="col-xs-12 paddingOverride centerAlign">
+                    <label class="titleFont" translate="HEADER_NAV.SELF"></label>
+                    <hr class="hrule visible-md visible-lg" ng-show="vm.teamMemberuserObj.isPeopleManager === 'Y' ? true:false">
+                </div>
+                <div class="col-xs-12 col-sm-{{vm.teamMemberuserObj.isPeopleManager === 'Y' ? 12:6}} col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.viewAllFeedback('teamMember')">
+                    <div class="col-xs-12"></div>
+                    <div></div>
+                    <img src="/client/assets/images/feedback-round-64px.png"/></br>
+                    <label class="qlFont">View All {{vm.teamMemberFullName}}'s Feedback</label>
+                </div>
+                <div class="col-xs-12 col-sm-{{vm.teamMemberuserObj.isPeopleManager === 'Y' ? 12:6}} col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.viewAllConvesration('teamMember')">
+                    <img src="/client/assets/images/sync-round-64px.png"/></br>
+                    <label class="qlFont">View All {{vm.teamMemberFullName}}'s Conversations</label>
+                </div>
+            </div>
+            <div class="col-xs-6 paddingOverride pointer" ng-show="vm.teamMemberuserObj.isPeopleManager === 'Y' ? true:false">
+                <div class="col-xs-12 paddingOverride centerAlign">
+                    <label class="titleFont" translate="HEADER_NAV.TEAM"></label>
+                    <hr class="hrule visible-md visible-lg" ng-show="vm.teamMemberuserObj.isPeopleManager === 'Y' ? true:false"/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.viewAllFeedback('teamMemberTeam')">
+                    <img src="/client/assets/images/feedback-round-64px.png"/></br>
+                    <label class="qlFont">View All {{vm.teamMemberFullName}}'s team Feedback</label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 centerAlign padding10 pointer" ng-click="vm.viewAllConvesration('teamMemberTeam')">
+                    <img src="/client/assets/images/sync-round-64px.png"/></br>
+                    <label class="qlFont">View All {{vm.teamMemberFullName}}'s team Conversations</label>
+                </div>
+            </div>
+           </div>
+    	</div>
+   	</div>
+  </div>
+</div>

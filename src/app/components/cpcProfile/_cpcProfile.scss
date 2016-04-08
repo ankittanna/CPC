@@ -1,0 +1,43 @@
+cpc-Profile{
+	padding:35px 20px 50px 20px;
+    label.fontCiscoSansTT{
+        font-family: 'CiscoSansTT';
+    }
+    label.fontCiscoSansTTLight{
+        font-family: 'CiscoSansTT-Light';
+    }
+    label.fontSize22{
+        font-size: 22px;
+    }
+    label.fontSize18{
+        font-size: 18px;
+    }
+    label.blueFont{
+        color: #0096d6;
+    }
+    label.lightGreyFont{
+        color: #646871;
+    }
+   div.profilePhoto{
+       position: relative;
+       width:130px;
+       height:130px;
+       overflow: hidden;
+       margin-top: 5px;
+        /*margin:0 auto;*/
+   }
+
+  div.profilePhotoSmall {
+    height: 68px;
+    overflow: hidden;
+    position: relative;
+    width: 66px;
+    margin-top: 5px;
+  }
+    span.profileIcon{
+      bottom: 4%;
+      left: 65%;
+      position: absolute;
+    }
+
+}

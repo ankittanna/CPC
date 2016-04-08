@@ -1,0 +1,246 @@
+<div class="col-xs-12 paddingOverride">
+    <div class="row">
+      <div class="col-xs-12"><label class="titleFont" translate="SYNCUP_CONVERSATION.SUMMARY"></label></div>
+    </div>
+</div>
+<div class="col-xs-12 paddingOverride">
+  <div class="row">
+    <div ng-show="vm.showCreateBtn" class="col-xs-7 col-sm-7 col-md-6 col-ls-6">
+      <button class="greenButton" ng-click="vm.createNewConversationTeam()" translate="SYNCUP_CONVERSATION.HEADING_ADD_SYNCUP_CONV_MOBILE"></button>
+    </div>
+    <div class="col-xs-5 col-sm-2 col-md-2 col-ls-2 pull-right padding-top-2">
+      <div class="select_style rounded divMinWidth110">
+        <select ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters" ng-change="vm.changedQuarterValue(vm.quarter)"></select>
+        <span></span>
+      </div>
+     </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+ <!-- Design for browser start -->
+	<div class="col-xs-12 hidden-xs hidden-sm visible-md visible-lg">
+	  <table class="col-xs-12 conversationTable fotnSize14 fontCiscoSansTT table table-striped">
+	    <thead>
+	      <tr class="fontCiscoSansTTBold fotnSize14 fontColor1a1a1a divHeight40">
+	        <th class="position-relative">
+	        	<div class="borderRightSeparator fontSize14" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TEAM_MEMBER"></div>
+	          <!-- <div class="heading1"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="borderRightSeparator fontSize14 marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_DEVELOPMENT"></div>
+	           <!-- <div class="heading2"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="borderRightSeparator fontSize14 marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_PERFORMANCE"></div>
+	          <!-- <div class="heading3"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="borderRightSeparator fontSize14 marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_ALIGNMENT"></div>
+	          <!-- <div class="heading4"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="borderRightSeparator fontSize14 marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_YOU"></div>
+	          <!-- <div class="heading5"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="borderRightSeparator fontSize14 marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_TALENT_SYNC_UP"></div>
+	          <!-- <div class="heading5"></div> -->
+	        </th>
+	        <th class="position-relative">
+	          <div class="marginLeft10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ACTIONS"></div>
+	          <!-- div class="heading6"></div> -->
+	        </th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-show="!vm.response" class="fontSize14 fontCiscoSansTT">
+	            <td colspan="8" ng-show="vm.loading">
+	              <div class="loader-placeholder">
+	                <ajax-loader type="small" ng-style="{position:'relative',left:'50%',top:'10%'}"></ajax-loader>
+	              </div>
+	            </td>
+	            <td colspan="8" ng-show="!vm.loading" translate="SYNCUP_CONVERSATION_DETAILS.NO_RECORDS_FOUND"></td>
+	      </tr>
+	      <tr ng-repeat="(key, val) in vm.response[0].DirectTeam" class='fontCiscoSansTT fontSize14'>
+	        <td ng-click='vm.viewAllSyncUpConversations("{{::key}}","false")'>
+	          <a class="pointer">{{vm.getFullname(key)}}</label>
+	        </td>
+	        <td ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Development}}","Development","false")' class='fonySize14 fontCiscoSansTTLight feedbackCountCell'>
+	          <label class="pointer">{{vm.calculateConvTag(val.Development)}}</label>
+	        </td>
+	        <td ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Performance}}","Performance","false")' class='fonySize14 fontCiscoSansTTLight feedbackCountCell'>
+	          <label class="pointer">{{vm.calculateConvTag(val.Performance)}}</label>
+	        </td>
+	        <td ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Alignment}}","Alignment","false")' class='fonySize14 fontCiscoSansTTLight feedbackCountCell'>
+	          <label class="pointer">{{vm.calculateConvTag(val.Alignment)}}</label>
+	        </td>
+	        <td ng-click='vm.showConversationsByTag("{{::key}}","{{::val.You}}","You","false")' class='fonySize14 fontCiscoSansTTLight feedbackCountCell'>
+	          <label class="pointer">{{vm.calculateConvTag(val.You)}}</label>
+	        </td>
+	        <td ng-click='vm.showConversationsByTag("{{::key}}","{{::val.TalentSyncUp}}","Talent Sync Up","false")' class='fonySize14 fontCiscoSansTTLight feedbackCountCell'>
+	          <label class="pointer">{{vm.calculateConvTag(val.TalentSyncUp)}}</label>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.viewAllSyncUpConversations("{{::key}}","false")' translate="SYNCUP_CONVERSATION_DETAILS.LABEL_VIEW_ALL"></a>
+	        </td>
+	      </tr>
+	      <tr ng-if="vm.showAlternateKey===true && vm.loading===false" ng-show="vm.altTeamAvailable">
+	      	<td colspan=7 style="text-align:right;"><a class="pointer" ng-click="vm.showHideAlternateTeam()" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_SHOW_ALT_TEAM"></a></td>
+	      </tr>
+	      <tr ng-show="vm.showAlternateKey===false">
+	      	<td colspan=7 style="text-align:right;"><a class="pointer" ng-click="vm.showHideAlternateTeam()" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_HIDE_ALT_TEAM"></a></td>
+	      </tr>
+	      <tr ng-show="!vm.showAlternateKey" ng-repeat="(key, val) in vm.response[0].AlternateTeam">
+	      	<td>
+	          <a class="pointer" ng-click='vm.viewAllSyncUpConversations("{{::key}}","true")'>{{vm.getFullname(key)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Development}}","Development","true")'>{{vm.calculateConvTag(val.Development)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Performance}}","Performance","true")'>{{vm.calculateConvTag(val.Performance)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Alignment}}","Alignment","true")'>{{vm.calculateConvTag(val.Alignment)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.You}}","You","true")'>{{vm.calculateConvTag(val.You)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.TalentSyncUp}}","Talent Sync Up","true")'>{{vm.calculateConvTag(val.TalentSyncUp)}}</a>
+	        </td>
+	        <td>
+	          <a class="pointer" ng-click='vm.viewAllSyncUpConversations("{{::key}}","true")' translate="SYNCUP_CONVERSATION_DETAILS.LABEL_VIEW_ALL"></a>
+	        </td>
+	      </tr>
+	    </tbody>
+	  </table>
+	 </div>
+	</div>
+	<div class="clearfix">&nbsp;</div>
+ <!-- Design for browser end -->
+ 
+ <!-- Design for mobile and Tablet -->
+ <div ng-show="!vm.response" class="fontSize14 fontCiscoSansTT hidden-lg hidden-md visible-xs visible-sm">
+	            <div colspan="8" ng-show="vm.loading">
+	              <div class="loader-placeholder">
+	                <ajax-loader type="small" ng-style="{position:'relative',left:'50%',top:'10%'}"></ajax-loader>
+	              </div>
+	            </div>
+	            <div colspan="8" ng-show="!vm.loading" translate="SYNCUP_CONVERSATION_DETAILS.NO_RECORDS_FOUND"></div>
+  </div>
+  <div ng-show="vm.response" class="col-xs-12 hidden-lg hidden-md visible-xs visible-sm">
+ 	<div class="col-xs-12 paddingOverride mobileConvBox">
+    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Team Member</label>
+    </div>
+ 	<div class="col-xs-12 mobileConvBox" ng-repeat="(key, val) in vm.response[0].DirectTeam">
+           <div class="col-xs-12 padding-side-0">
+           		<div class="col-xs-12 paddingOverride">
+                	<a class="pointer" ng-click='vm.viewAllSyncUpConversations("{{::key}}","false")'>{{vm.getFullname(key)}}</a><label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4"> - Sync Up Conversations</label>
+                </div>
+                <div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Development</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Development}}","Development","false")'>{{vm.calculateConvTag(val.Development)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Performance</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Performance}}","Performance","false")'>{{vm.calculateConvTag(val.Performance)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Alignment</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Alignment}}","Alignment","false")'>{{vm.calculateConvTag(val.Alignment)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">You</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.You}}","You","false")'>{{vm.calculateConvTag(val.You)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Talent Sync Up</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.TalentSyncUp}}","Talent Sync Up","false")'>{{vm.calculateConvTag(val.TalentSyncUp)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<a class="pointer pull-right" ng-click='vm.viewAllSyncUpConversations("{{::key}}","false")' translate="SYNCUP_CONVERSATION_DETAILS.LABEL_VIEW_ALL"></a>
+                </div>
+        	</div>
+        </div>
+        <div class="hidden-lg hidden-md visible-xs visible-sm" ng-if="vm.showAlternateKey===true && vm.loading===false" ng-show="vm.altTeamAvailable">
+	      	<div style="text-align:right;"><a class="pointer" ng-click="vm.showHideAlternateTeam()" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_SHOW_ALT_TEAM"></a></div>
+	    </div>
+	    <div class="hidden-lg hidden-md visible-xs visible-sm" ng-show="vm.showAlternateKey===false">
+	      	<div style="text-align:right;"><a class="pointer" ng-click="vm.showHideAlternateTeam()" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_HIDE_ALT_TEAM"></a></div>
+	    </div>
+	    <div ng-show="!vm.showAlternateKey" class="col-xs-12 mobileConvBox" ng-repeat="(key, val) in vm.response[0].AlternateTeam">
+           <div class="col-xs-12 padding-side-0">
+           		<div class="col-xs-12 paddingOverride">
+                	<a class="pointer" ng-click='vm.viewAllSyncUpConversations("{{::key}}","true")'>{{vm.getFullname(key)}}</a><label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4"> - Sync Up Conversations</label>
+                </div>
+                <div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Development</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Development}}","Development","true")'>{{vm.calculateConvTag(val.Development)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Performance</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Performance}}","Performance","true")'>{{vm.calculateConvTag(val.Performance)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Alignment</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.Alignment}}","Alignment","true")'>{{vm.calculateConvTag(val.Alignment)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">You</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.You}}","You","true")'>{{vm.calculateConvTag(val.You)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<div class="col-xs-6 paddingOverride">
+                    	<label class="fontCiscoSansTTLight fontSize14 fontColor9c9ca4">Talent Sync Up</label>
+                    </div>
+                   	<div class="col-xs-6 paddingOverride">
+                    	<a class="pointer" ng-click='vm.showConversationsByTag("{{::key}}","{{::val.TalentSyncUp}}","Talent Sync Up","true")'>{{vm.calculateConvTag(val.TalentSyncUp)}}</a>
+                    </div>
+               	</div>
+               	<div class="col-xs-12 paddingOverride">
+                	<a class="pointer pull-right" ng-click='vm.viewAllSyncUpConversations("{{::key}}","true")' translate="SYNCUP_CONVERSATION_DETAILS.LABEL_VIEW_ALL"></a>
+                </div>
+        	</div>
+        </div>
+ 	</div> 
+
+

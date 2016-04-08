@@ -1,0 +1,214 @@
+<div class="ui-view container main-container ng-scope" id="exprotPDF">
+  <div class="container-fluid">
+  <div  class="col-xs-12">
+    <div class="table-responsive">
+    
+      <div class="col-xs-6" style="padding: 0;">
+        <span class="heading" ng-bind="vm.heading"></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="link" ng-bind="vm.linkHeading"></span>
+      </div>
+      <div class="col-xs-6 padding-side-0 paddingRightOverride pull-right">
+        <div class="pull-right displayTableRow" id="selfTeamNavTab">
+          <span class="fa fa-print edit padding-right-20 hide-not-screen pointer" ng-click="vm.printWindow()"></span>
+          <span class="fa fa-edit print padding-right-20 hide-not-screen pointer" ng-click="vm.exportPDF()"></span>
+        </div>
+      </div>
+    
+
+          <div class="col-xs-12" ng-show="vm.isPeopleManager || vm.isAltMgr">
+            <div class="row">
+            
+                 <div class="col-xs-5">
+                	<input class="teamConversationRadio" type="radio" id="radio02" name="radio" value="true" ng-click="vm.configureRadioBtn($event)" ng-checked="vm.isYouEnabled"/>
+					<label for="radio02" class="fontCiscoSansTTLight"><span></span>You&nbsp;</label>
+                </div>
+            	<div class="col-xs-7">
+                	<div class="row">
+                    	<div class="col-xs-1">
+                    		<input class="teamConversationRadio" type="radio" id="radio01" name="radio" value="false" ng-click="vm.configureRadioBtn($event)"/>
+				  			<label for="radio01"><span></span></label>
+                   	 	</div>
+	                    <div class="col-xs-10">
+	                        <span class="dropdown" dropdown>
+	                          <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="vm.isYouEnabled">
+	                          <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMember}}</label>
+	                          <span class="caret pull-right marginTop8"></span>
+	                          </button>
+	                          <ul class="dropdown-menu fullWidth dropdownStyle">
+	                            <li ng-repeat="teamMember in vm.teamHierarchy">
+	                              <a ng-click="vm.changeTeamMember(teamMember)">
+	                              	<div class="img-circle img-responsive teamPersonImage">
+	      								<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+	      							</div>
+	      							<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+	                            </li>
+	                            <li ng-repeat="teamMember in vm.altTeamHierarchy">
+	                              <a ng-click="vm.changeTeamMember(teamMember)">
+	                              	<div class="img-circle img-responsive teamPersonImage">
+	      								<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+	      							</div>
+	      							<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+	                            </li>
+	                          </ul>
+	                         </span>
+	                    </div>
+                   	</div>
+                </div>
+
+            </div>
+        </div>
+        
+      <div class="col-xs-12 paddingLeftOverride pull-left">
+      <div class="col-xs-12 select_style divMinWidth110">
+        <select id="provideQtrOptions" ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+                ng-change="vm.changedQuarterValue(vm.quarter)">
+        </select>
+        <span></span>
+      </div>
+     </div>
+     
+     <div class="col-xs-12 paddingLeftOverride pull-left">
+      <div class="col-xs-12 select_style divMinWidth110">
+        <select id="provideQtrOptions" ng-model="vm.statusFilterValue" ng-options="status for status in vm.status"
+                ng-change="vm.changeStatus()">
+        </select>
+        <span></span>
+      </div>
+      
+      <div class="col-xs-12 paddingLeftOverride pull-left">
+      <div class="col-xs-12 select_style divMinWidth110">
+        <select id="provideQtrOptions" ng-model="vm.typeFilterValue" ng-options="type for type in vm.type"
+                ng-change="vm.changeType()">
+        </select>
+        <span></span>
+      </div>   
+      
+     </div>
+     
+     <div class="col-xs-12 paddingTop10">
+    <button ng-click="vm.getConversationData()" class="viewAllSyncUpConversationsButton fontWeightBold marginBottom5">Generate Conversation Data</button>
+  </div>
+  
+      <!--  div class="col-xs-10 padding-side-0" ng-show="vm.isPeopleManager || vm.isAltMgr">
+           <span class="dropdown" dropdown>
+             <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle>
+             <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMember}}</label>
+             <span class="caret pull-right marginTop8"></span>
+             </button>
+             <ul class="dropdown-menu fullWidth dropdownStyle">
+               <li ng-repeat="teamMember in vm.teamHierarchy">
+                 <a ng-click="vm.changeTeamMember(teamMember)">
+                 	<div class="img-circle img-responsive teamPersonImage">
+						<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+					</div>
+					<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+               </li>
+               <li ng-repeat="teamMember in vm.altTeamHierarchy">
+                 <a ng-click="vm.changeTeamMember(teamMember)">
+                 	<div class="img-circle img-responsive teamPersonImage">
+						<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+					</div>
+					<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+               </li>
+             </ul>
+            </span>
+       </div>-->
+
+
+
+      <table ng-show="vm.showContent" class="table table-striped" border="1">
+        <thead>
+
+        <tr>
+          <th width="25%" style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_NAME_LABEL"></label>
+          </th>
+          <th width="25%" style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_NUMBER_LABEL"></label>
+          </th>
+          <th width="25%" style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.EMPLOYEE_MAILID_LABEL"></label>
+          </th>
+          <th width="25%" style="font-size:14px;font-weight:bold;color:#000000;">
+            <label translate="TEAM.MANAGER_NAME_LABEL"></label>
+          </th>
+        </tr>
+        
+        </thead>
+        <tbody>
+        <tr>
+
+          <td width="25%"><label class="fontSize14 fontCiscoSansTT">{{vm.convAboutByFullName}}</label> </td>
+          <td width="25%"><label class="fontSize14 fontCiscoSansTT">{{vm.empObj.employeeNo}}</label></td>
+          <td width="25%"><label class="fontSize14 fontCiscoSansTT">{{vm.empObj.username}}@cisco.com</label> </td>
+          <td width="25%"><label class="fontSize14 fontCiscoSansTT">{{vm.myManager}}</label></td>
+
+        </tr>
+        </tbody>
+      </table>
+              
+      <div ng-show="vm.showContent" style="font-size:16px;font-weight:bold;color:#000000;" class=" padding-side-0">
+        {{vm.quarter}} - {{vm.convAboutByFullName}}
+      </div>
+      
+                  <!--div style="font-size:14px;font-weight:bold;color:#000000;">
+                    Conversations
+                  </div-->
+      <table center>
+      <tr ng-show="!vm.response" class="fontSize14 fontCiscoSansTT">
+        <td ng-show="vm.loading">
+          <div class="loader-placeholder">
+            <ajax-loader type="small" ng-style="{position:'relative',left:'50%',top:'10%'}"></ajax-loader>
+          </div>
+        </td>
+        <td ng-show="!vm.loading" translate="SYNCUP_CONVERSATION_DETAILS.NO_CONVERSATION_MSG"></td>
+      </tr>
+      </table>
+                  <div  ng-repeat="conversation in vm.response">
+
+                 <table class="table table-striped" border="1">
+                    <tbody>
+                    <tr>
+                    
+                    <tr style="background-color: #E0E1E4">
+                      <td width=10% style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label> </td>
+                      <td width=45% > <label class="fontSize14 fontCiscoSansTT"></label>{{conversation.topicTitle}}</td>
+
+                      <td width=45% >
+                        <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorWhite padding8 borderRadius5 autoWidth marginRight10" ng-repeat="tag in conversation.tags">{{tag}}</label>
+                      </td>
+                    </tr>
+  
+                    
+                    </tbody>
+                  </table>
+
+                <table style="max-width: 100%;width:98%;margin:auto" border="0">
+
+                  <tr ng-repeat="conversationObject in conversation.conversation">
+                  <td>
+                    <table  class="table table-striped" style=" border: 1px solid #000;">
+                      <tr>
+                            <td style="font-size:14px;font-weight:bold;color:#000000;"><label class="fontSize14 fontCiscoSansTT">{{conversationObject.createdBy}}</label> </td>
+                            <td align="right"> <label class="fontSize14 fontCiscoSansTT">{{vm.translateDateAndTime(conversationObject.createdOn)}}</label></td>
+                      </tr>
+                      <tr>
+                            <td colspan="2"> <div class="fontSize16 fontCiscoSansTT" ng-bind-html="conversationObject.comments | sanitize"></div></td>
+                      </tr>
+					</table>
+                   </td>
+                   </tr>
+                   
+                </table>
+                </div>
+
+      <!--/div-->
+
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="exprotPDFCanvas">
+
+</div>

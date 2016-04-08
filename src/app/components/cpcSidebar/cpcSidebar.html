@@ -1,0 +1,33 @@
+<div class="container">
+  <nav class="hidden-xs hidden-sm hide-not-screen" id="sideNavbar" ng-click="vm.closeSideNavbarMenu()">
+    <ul>
+      <li class='sideBar'>
+        <div class="pointer"><img class="sideBariconSize" src='/client/assets/images/burger-menu.png'/><span class='marginLeft10' translate="SIDE_BAR.MENU"></span></div>
+      </li>
+      <li class='sideBar homeSideBar'>
+        <div class="pointer" ng-click="gotoHome();"><img class="sideBariconSize" src='/client/assets/images/home.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.HOME"></span></div>
+      </li>
+      <li class='sideBar timelineSideBar'>
+        <div class="pointer" ng-click="gotoTimeline();"><img class="sideBariconSize" src='/client/assets/images/timeline.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.TIMELINE"></span></div>
+      </li>
+      <li class='sideBar conversationSideBar'>
+        <div class="pointer" ng-click="gotoConversations();"><img class="sideBariconSize" src='/client/assets/images/sync.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.CONVERSATIONS"></span></div>
+      </li>
+      <li class='sideBar feedbackSideBar'>
+        <div class="pointer" ng-click="vm.goToFeedback();"><img class="sideBariconSize" src='/client/assets/images/feedback.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.FEEDBACK"></span></div>
+      </li>
+      <li class='sideBar alternateSideBar'>
+        <div class="pointer" ng-click="gotoAlternate()"><img class="sideBariconSize" src='/client/assets/images/alt-manager.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.ALTERNATE"></span></div>
+      </li>
+      <li class='sideBar settingsSideBar'>
+        <div class="pointer"><img class="sideBariconSize" src='/client/assets/images/settings.png'/><span class='marginLeft10 fontSize16 fontCiscoSansTTLight' translate="SIDE_BAR.SETTINGS"></span></div>
+      </li>
+      <li ng-show="isAdmin" class='sideBar adminSideBar'>
+        <div class="pointer" ng-click="gotoAdmin();"><img class="sideBariconSize" src='/client/assets/images/admin.png'/><span class='marginLeft10' translate="SIDE_BAR.ADMIN"></span></div>
+      </li>
+      <li class='sideBar logoutSideBar'>
+        <div class="pointer"><img class="sideBariconSize" src='/client/assets/images/logout.png'/><a href="auth/logout" class="pointer textDecorationNone fontColorFFFFFF marginLeft10 fontSize16 fontCiscoSansTTLight" translate="SIDE_BAR.LOGOUT"></a></div>
+      </li>
+    </ul>
+  </nav>
+</div>

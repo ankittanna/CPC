@@ -1,0 +1,134 @@
+<div class="row">
+  <!-- <div class="col-xs-12">
+    <div class="col-xs-12">
+      <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Details</span></label>
+    </div>
+  </div> -->
+  <div class="clearfix">&nbsp;</div>
+  <div class="col-xs-12">
+    <div class="col-xs-12">
+      <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Alternate manager For</span></label>
+      <span class="fontSize16 fontCiscoSansTT required">&nbsp;*</span>
+    </div>
+  </div>
+  <div class="clearfix">&nbsp;</div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="col-xs-12">
+      <div class="row" ng-show="!vm.isTeamDetailsLoaded">
+        <div class="col-xs-12">
+          <ajax-loader type="small"></ajax-loader><label class="fontSize14 fontCiscoSansTTBold fontColor222222">Loading Team Info...</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="row" ng-show="vm.isTeamDetailsLoaded">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-7 col-xs-11">
+              <span class="dropdown" dropdown>
+                <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="vm.isFullTeamFeedbackSelected">
+                  <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMember}}</label>
+                  <span class="caret pull-right marginTop8"></span>
+                </button>
+                <ul class="dropdown-menu fullWidth dropdownStyle">
+                  <li ng-repeat="teamMember in vm.contextUserTeamMembers">
+                    <a ng-click="vm.changeTeamMember(teamMember)">
+                      <div class="img-circle img-responsive teamPersonImage">
+                        <img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+                      </div>
+                      <label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+                  </li>
+                </ul>
+              </span>
+            </div>
+            <!-- <div class="col-xs-6"></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-xs-12">
+  <label class="fontSize16 fontWeightBold ng-scope"><span class="ng-scope">Manager Name</span></label>
+  <span class="fontSize16 fontCiscoSansTT required">&nbsp;*</span>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-lg-6 col-md-6 col-sm-7 col-xs-11">
+
+  <form name="form">
+    <tags-input ng-model="vm.searchTitle"
+                display-property="username"
+                placeholder="Manager Name"
+                replace-spaces-with-dashes="false"
+                add-on-paste="true"
+                paste-split-pattern=";">
+      <auto-complete source="vm.loadTags($query)"
+                     min-length="0"
+                     max-results-to-show="30"
+                     debounce-delay="900"
+                     template="autocomplete-template">
+      </auto-complete>
+    </tags-input>
+
+    <script type="text/ng-template" id="autocomplete-template">
+      <div class="left-panel">
+      </div>
+      <div class="right-panel">
+        <span ng-bind-html="$highlight($getDisplayText())"></span>
+        <span>{{data.firstName}}</span>
+        <span>{{data.lastName}}&nbsp;({{data.username}}@cisco.com)</span>
+      </div>
+    </script>
+  </form>
+
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-xs-6">
+  <div class="clearfix">&nbsp;</div>
+  <strong>Start Date</strong>
+</div>
+<div class="col-xs-6">
+  <div class="clearfix">&nbsp;</div>
+  <strong>End Date</strong>
+</div>
+<!-- <div class="clearfix">&nbsp;</div> -->
+
+<div class="col-xs-6">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="input-group">
+        <input ng-disabled="true" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtStart" is-open="openedStart" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openStart($event)"><i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-6">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="input-group">
+        <input ng-disabled="true" type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dtEnd" is-open="openedEnd" min-date="dtStart" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="openEnd($event)"><i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="clearfix">&nbsp;</div> -->
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 textAlignRight">
+  <button class="shareWithTeamButton marginTop20" ng-click="vm.assignManager()"><span>Allocate</span></button>
+  <button class="cancelButton marginTop20" ng-click="vm.cancelAction()"><span class="ng-scope">Cancel</span></button>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>
+<div class="clearfix">&nbsp;</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid paddingOverride">
+  <!-- <div class="container paddingOverride"> -->
+    <div class="row">
+      <div class="col-xs-12 padding10">
+        <div class="col-xs-6 padding-side-0" style="padding: 10px 0;">
+          <span class="heading" ng-bind="vm.heading"></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="link" ng-bind="vm.linkHeading"></span>
+          <br/>
+          <div class="visible-lg visible-md visible-sm hidden-xs" ng-show="vm.breadcrumb" ncy-breadcrumb></div>
+        </div>
+        <div class="col-xs-6 padding-side-0">
+
+          <div class="pull-right displayTableRow">
+            <span id="selfTeamNavTab">
+            <span id="selfTab" class="self active" ng-show="display" translate="HEADER_NAV.SELF" ng-click="vm.toggleSelfTeam('self');"><a ui-sref="selfState">Self</a></span>
+            <span id="teamTab" class="team" ng-show="display" translate="HEADER_NAV.TEAM" ng-click="vm.toggleSelfTeam('team');"><a ui-sref="teamState">Team</a></span>
+            </span>
+
+            <span class="fa fa-print edit padding-right-20" ng-click="printWindow()"></span>
+           <!-- <span class="fa fa-edit print padding-right-20"></span> -->
+            <span class="fa fa-external-link" ng-click="vm.onQuickLink()" id="quick_Link"></span>
+            <div id="quicklinkContainer" style="width:340px"collapse="vm.showQuickDropdown">
+              <div id="quicklinkBody" class="quicklinks" >
+                <div ng-repeat="data in vm.quick"class="col-xs-12" id="quicklink">
+                  <div class="col-xs-6" style="padding-left:5px; padding-right:5px">
+                    <a class="marginRight5 fontSize12 fontCiscoSansTT fontColor39a5e3" ng-click="vm.openWindow({{::data}})" > <label class="fontSize14 fontCiscoSansTT">{{data.linkName}}</label> </a></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="pull-right displayTableRow">
+
+          </div>
+        </div>
+      </div>
+      <div class="hidden-lg visible-xs hidden-sm hidden-md col-xs-12 paddingTopOverride padding10 fontSize14 fontCiscoSansTT">
+       <div ng-show="vm.breadcrumb" ncy-breadcrumb></div>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>

@@ -1,0 +1,36 @@
+<div class="clearfix">
+  &nbsp;
+</div>
+
+<div class="col-xs-12">
+  <div class="input-group">
+    <div class="input-group-btn">
+
+      <div class="select_style_timeline divMinWidth180">
+        <!--<select class="form-control" ng-model="vm.timelineFilterDropdownValue" ng-options="f for f in vm.formats" ng-change="vm.timelineFilterChange()">
+        </select>-->
+        <select class="form-control" id="searchDropdownBox" title="Search in" style="top: 0px;z-index: 0;" ng-model="vm.timelineFilterDropdownValue" ng-change="vm.timelineFilterChange()">
+          <option selected="selected" value="All Activities">All Activities</option>
+          <option value="Sync Up Conversations">Sync Up Conversations</option>
+          <option value="Performance">&nbsp;&nbsp;&nbsp;Performance</option>
+          <option value="Development">&nbsp;&nbsp;&nbsp;Development</option>
+          <option value="Alignment">&nbsp;&nbsp;&nbsp;Alignment</option>
+          <option value="You">&nbsp;&nbsp;&nbsp;You</option>
+          <option value="Feedback">Feedback</option>
+          <option value="Provided Feedback">&nbsp;&nbsp;&nbsp;Provided Feedback</option>
+          <option value="Recieved Feedback">&nbsp;&nbsp;&nbsp;Recieved Feedback</option>
+        </select>
+        <span></span>
+      </div>
+    </div>
+
+    <input type="text" class="form-control" aria-label="Text input with dropdown button" ng-model="vm.timelineFilterText" ng-keypress="vm.onEnterClick($event)">
+    <span class="input-group-btn">
+      <button class="btn-padding btn btn-primary" type="button" ng-click="vm.timelineFilterSubmit()">
+        <i class="fa fa-search fa-lg"></i>
+      </button>
+    </span>
+  </div>
+  <div class="col-xs-3 paddingLeftOverride">
+  </div>
+</div><!-- /.col-lg-6 -->

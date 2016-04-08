@@ -1,0 +1,171 @@
+<div class="container-fluid">
+
+  <div class="row marginBottom20">
+    <div class="col-xs-12">
+      <label class="marginTop40 fontSize20 fontCiscoSansTTLight" translate="MAIN_HEADER_NAV.CONVERSATION_DETAILS_HEADING"></label>
+    </div>
+    <div class="marginTop20 col-xs-12">
+      <div class="img-circle img-responsive teamPersonImage">
+        <img src="http://wwwin.cisco.com/dir/photo/std/{{vm.conversationOwner}}.jpg"/>
+      </div>
+      <label class="fontSize18 fontCiscoSansTT teamPersonName">{{vm.convOwnerFullName}}</label>
+    </div>
+    <div class="col-xs-12" style="float:right;">
+      <label ng-show="vm.draftFlag" translate="SYNCUP_CONVERSATION_DETAILS.DRAFT_SAVED_SUCCESS"></label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 paddingOverride">
+      <div class="borderTopColord76631 conversation-box auto-cursor col-xs-12 padding10 marginBottom100">
+        <div class="col-xs-12">
+          <label class="fontSize16 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+          <input ng-show="!vm.fromRespond" class="titleTextBox" required type="text" placeholder="Enter Title" ng-model="vm.conversationTitle" ng-model-options="{allowInvalid: true}"/>
+          <label ng-show="vm.fromRespond" class="fontSize16 fontCiscoSansTT ng-binding">{{vm.conversationTitle}}</label>
+        </div>
+        <div class="col-xs-12 marginTop20">
+          <label class="fontSize16 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_FOR"></label>
+        </div>
+        <div class="col-xs-12">
+          <div class="img-circle img-responsive teamPersonImage">
+            <img src="http://wwwin.cisco.com/dir/photo/std/{{vm.conversationFor}}.jpg"/>
+          </div>
+          <label class="fontSize18 fontCiscoSansTT fontColor0096d5 teamPersonName">{{vm.convForFullName}}</label>
+        </div>
+        <div class="col-xs-12 marginTop20">
+          <label class="fontSize16 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12 position-relative">
+          <cpc-tiny-mce></cpc-tiny-mce>
+        </div>
+
+        <div ng-show="vm.showTags()" class="col-xs-12 marginBottom30">
+          <div class="row">
+            <div class="col-xs-12">
+              <label class="fontSize16 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TAGS"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+            </div>
+            <div class="col-xs-12">
+              <fieldset class="fontCiscoSansTTLight tags-list">
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+
+                  <input type="checkbox" ng-model="vm.selectedTags[0]" name="Performance" id="checkboxG1" class="convTagCheckbox css-checkbox" ng-checked="{{vm.isPerformanceChecked}}"/><label for="checkboxG1" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_PERFORMANCE"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                  <input type="checkbox" ng-model="vm.selectedTags[1]" name="Development" id="checkboxG52" class="convTagCheckbox css-checkbox" ng-checked="{{vm.isDevelopmentChecked}}"/><label for="checkboxG52" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_DEVELOPMENT"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                  <input type="checkbox" ng-model="vm.selectedTags[2]" name="Alignment" id="checkboxG53" class="convTagCheckbox css-checkbox" ng-checked="{{vm.isAlignmentChecked}}"/><label for="checkboxG53" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_ALIGNMENT"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                  <input type="checkbox" ng-model="vm.selectedTags[3]" name="You" id="checkboxG55" class="convTagCheckbox css-checkbox" ng-checked="{{vm.isYouChecked}}"/><label for="checkboxG55" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_YOU"></label>
+                </div>
+
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-xs-12 marginBottom10" ng-show="vm.showAltManagerSection">
+          <label class="fontSize16 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.SHARE_WITH"></label>
+        </div>
+		<div class="col-xs-12 marginBottom30" ng-show="vm.showAltManagerSection">
+            <div class="row">
+            	<div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
+                	<input class="selfConversationRadio" type="radio" id="radio01" name="radio" value="true" ng-click="vm.configureSelfConversation($event)" ng-checked="vm.radioBtn1Checked" ng-disabled="vm.radioBtn1Disable == 'true'"/>
+					<label for="radio01" class="fontCiscoSansTTLight"><span></span>{{vm.loginUserManagerName}}</label>
+					<div style="color:gray" translate="TEAM.MANAGER_LABEL"></div>
+                </div>
+            	<div class="col-xs-12 col-sm-7 col-md-6 col-lg-6">
+                	<div class="row">
+                    	<div class="col-xs-1">
+                    		<input class="selfConversationRadio" type="radio" id="radio02" name="radio" value="false" ng-click="vm.configureSelfConversation($event)" ng-checked="!vm.radioBtn1Checked" ng-disabled="vm.radioBtn2Disable == 'true'"/>
+				  			<label for="radio02"><span></span></label>
+                   	 	</div>
+                    <div class="col-xs-10 col-sm-9 col-md-9 col-lg-7 paddingOverride">
+                        <span class="dropdown" dropdown>
+                          <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="!vm.isAltManagerSelectEnabled">
+                          <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedAltManager}}</label>
+                          <span class="caret pull-right marginTop8"></span>
+                          </button>
+                          <ul class="dropdown-menu fullWidth dropdownStyle">
+                            <li ng-repeat="(key, val) in vm.altManagerList">
+                              <a ng-click="vm.changeAltManager(key,val)">
+                              	<div class="img-circle img-responsive teamPersonImage">
+      								<img src="http://wwwin.cisco.com/dir/photo/std/{{key}}.jpg"/>
+      							</div>
+      							<label class="teamPersonName">{{val}}</label></a>
+                            </li>
+                          </ul>
+                         </span>
+                    </div>
+                   </div>
+                   <div style="color:gray" translate="TEAM.ALT_MANAGER_LABEL"></div>
+                </div>
+            </div>
+        </div>
+		<div class="col-xs-12 required" ng-show="!vm.radioBtn1Checked" translate="SYNCUP_CONVERSATION_DETAILS.SHARE_MANAGER_ALSO"></div>
+		
+		<div class="uploader-position col-xs-10 padding-side-0">
+            <div ng-show="vm.showAttachments" ng-repeat="(key, val) in vm.attachmentId">
+              <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10">
+                <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>
+                </label>
+                <i class="fa fa-close fa-lg" ng-click="vm.deleteAttachment('{{key}}')"></i>
+                <!-- <a ng-click="vm.deleteAttachment('{{key}}')">Delete</a>   -->
+            </div>
+            <div ng-repeat="item in vm.uploader.queue" class="col-xs-12 padding-side-0">
+              <div style="border: 1px solid darkgray;">
+                <div class="col-xs-6">{{ item.file.name }}</div>
+                <div class="col-xs-5" ng-show="!item.progress" style="padding-top: 2px;"></div>
+                <div class="col-xs-5" ng-show="item.progress" style="padding-top: 2px;">
+                  <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }" ng-show="item.progress === 100 ? 'true' : 'false'"></div>
+                  </div>
+                </div>
+                <div class="col-xs-1 pull-right" style="padding-top: 2px;">
+                  <i class="fa fa-close fa-lg pull-right" ng-click="item.remove()"></i>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+        </div>
+          
+        <div class="col-xs-12">
+          <div class="row borderTop7B7B7B">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-1 padding-top-14">
+
+              <label for="file-upload" class="custom-file-upload">
+                <img ng-src="/client/assets/images/attachment-icon.png" alt=""/>
+              </label>
+              <input id="file-upload" type="file" nv-file-select="" uploader="vm.uploader" multiple/>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-3">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 textAlignRight hidden-xs visible-sm visible-lg visible-md">
+              <button ng-disabled="vm.deletePossible == 'false'" class="{{vm.deleteEnable}} deleteButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_DELETE" ng-click="vm.deleteConversation()"></button>
+              <button ng-disabled="vm.cancelPossible == 'false'"  class="{{vm.btnEnable}} cancelButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_CANCEL" ng-click="vm.cancelAction()"></button>
+              <button ng-disabled="vm.saveDraftPossible == 'false'"  class="{{vm.btnEnable}} saveAsDraftButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-click="vm.saveConversationAsDraftService()"></button>
+              <button ng-disabled="vm.shareTeamMemberPossible == 'false'"  ng-show="vm.showShareWithManager()" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_MANAGER" ng-click="vm.shareConversationWithManagerService()"></button>
+              <button ng-disabled="vm.shareManagerPossible == 'false'"  ng-show="vm.showShareWithTeamMember()" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_TEAM_MEMBER" ng-click="vm.shareConversationWithTeamMemberService()"></button>
+              <button ng-disabled="vm.sharePossible == 'false'" ng-show="vm.showAltManagerSection" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE" ng-click="vm.shareConversation()"></button>
+            </div>
+            
+            <div class="col-xs-12 textAlignRight visible-xs hidden-sm hidden-md hidden-lg paddingOverride">
+              <button ng-disabled="vm.shareTeamMemberPossible == 'false'"  ng-show="vm.showShareWithManager()" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_MANAGER" ng-click="vm.shareConversationWithManagerService()"></button>
+              <button ng-disabled="vm.shareManagerPossible == 'false'"  ng-show="vm.showShareWithTeamMember()" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_TEAM_MEMBER" ng-click="vm.shareConversationWithTeamMemberService()"></button>
+              <button ng-disabled="vm.sharePossible == 'false'" ng-show="vm.showAltManagerSection" class="{{vm.btnEnable}} shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE" ng-click="vm.shareConversation()"></button>
+            </div>
+            <div class="col-xs-12 textAlignRight visible-xs hidden-sm hidden-md hidden-lg paddingOverride">
+              <button ng-disabled="vm.deletePossible == 'false'" class="{{vm.deleteEnable}} deleteButton marginTop20 col-xs-4" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_DELETE" ng-click="vm.deleteConversation()"></button>
+              <button ng-disabled="vm.cancelPossible == 'false'"  class="{{vm.btnEnable}} cancelButton marginTop20 col-xs-4" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_CANCEL" ng-click="vm.cancelAction()"></button>
+              <button ng-disabled="vm.saveDraftPossible == 'false'"  class="{{vm.btnEnable}} saveAsDraftButton marginTop20 col-xs-4" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-click="vm.saveConversationAsDraftService()"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

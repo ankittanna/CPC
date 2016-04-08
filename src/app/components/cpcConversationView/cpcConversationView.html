@@ -1,0 +1,82 @@
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-9">
+            <label class="marginTop40 fontSize20 fontCiscoSansTTLight" translate="MAIN_HEADER_NAV.CONVERSATION_DETAILS_HEADING"></label>
+      </div>
+
+ 	</div>
+    <div class="row" ng-repeat="conversationObject in vm.currentConversation.conversation">
+	     <div class="row">
+		        <div class="marginTop20 col-xs-12">
+		      		<div class="img-circle img-responsive teamPersonImage">
+		            	<img src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentConversation.conversation[$index].createdBy}}.jpg"/>
+		            </div>
+		            <div class="col-xs-11">
+		            	<label class="fontSize18 fontCiscoSansTT fontColor0096d5 marginTop5 teamPersonName">{{vm.currentConversation.conversation[$index].createdByFullName}}</label>
+		            	<p class="fontSize14 fontCiscoSansTTLight">{{vm.translateDateAndTime(vm.currentConversation.conversation[$index].createdOn)}}</p>
+		            </div>
+		      </div>
+		 	</div>
+		    <div class="row">
+		    	<div class="col-xs-12">
+		        	<div class="borderTopColor93C85E conversation-box auto-cursor col-xs-12 padding10 marginBottom100">
+		                <div class="col-xs-12">
+		                    <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label>
+		                </div>
+		                <div class="col-xs-12">
+		                    <label class="fontSize16 fontCiscoSansTT">{{vm.currentConversation.topicTitle}}</label>
+		                </div>
+		                <div class="col-xs-12 marginTop20">
+		                    <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_FOR"></label>
+		                </div>
+		                <div ng-if="vm.currentConversation.type==='Conversation' || vm.currentConversation.type==='CONVERSATION'" class="col-xs-12">
+		                    <div class="img-circle img-responsive teamPersonImage">
+		                        <img src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentConversation.conversationAbout}}.jpg"/>
+		                    </div>
+		                        <label class="fontSize18 fontCiscoSansTT fontColor0096d5 teamPersonName">{{vm.currentConversation.convAboutFullName}}</label>
+		                 </div>
+		                <div ng-if="vm.currentConversation.type==='TalentSyncUp'" class="col-xs-12">
+		                    <div class="col-xs-12">
+		                    	<label class="fontSize18 fontCiscoSansTT fontColor0096d5 marginTop5" translate="SYNCUP_CONVERSATION_DETAILS.TALENT_SYNCUP_SHARED"></label>
+		                        <label class="fontSize18 fontCiscoSansTT fontColor0096d5 marginTop5">{{vm.currentConversation.targetFullName}}</label>
+		                    </div>
+		                </div>
+		
+		                <div class="col-xs-12 marginTop20">
+		                    <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label>
+		                </div>
+		                <div class="col-xs-12">
+		                    <div class="fontSize16 fontCiscoSansTT" ng-bind-html="vm.currentConversation.conversation[$index].comments | sanitize"></div>
+		                </div>
+		
+		                <div class="col-xs-12 marginTop20">
+		                    <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TAGS"></label>
+		                </div>
+		                <div class="col-xs-12">
+		                    <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10" ng-repeat="tag in vm.currentConversation.tags">{{tag}}</label>
+		                </div>
+		                <div class="col-xs-12 marginTop20" ng-show="vm.currentConversation.conversation[$index].attachmentsAvailable">
+		                  <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ATTACHMENT"></label>
+		                </div>
+		                <div class="col-xs-12">
+		                  <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10"  ng-repeat="(key, val) in vm.currentConversation.conversation[$index].attachmentId" >
+		                    <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  </label>
+		                </div>
+		              <!--  <div class="col-xs-12 marginTop10 marginBottom50">
+		                    <div class="height90 width90 backgroundColorFFFFFF marginRight10 displayInlineBlock padding10 borderC6C6C6">
+		                    	<img src="../../../client/assets/images/ui-bootstrap.png" class="fullWidth"/>
+		                    </div>
+		                    <div class="height90 width90 backgroundColorFFFFFF marginRight10 displayInlineBlock padding10 borderC6C6C6">
+		                    	<img src="../../../client/assets/images/ui-bootstrap.png" class="fullWidth"/>
+		                    </div>
+		                </div>-->
+		              </div>
+		              <div class="col-xs-12 marginBottom50" ng-show={{vm.canRespond()}}>
+		              		<button class="shareWithTeamButton pull-right" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_RESPOND" ng-click="vm.loadRespondModule()"></button>
+		              </div>
+		      </div>
+		    </div>
+	    
+    </div>
+</div>

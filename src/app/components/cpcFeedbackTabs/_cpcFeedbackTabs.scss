@@ -1,0 +1,11 @@
+.provide:hover, .reqrec:hover{
+			cursor: pointer;
+		}
+.provide, .reqrec{
+			display: table-cell;
+			vertical-align: middle;
+			padding: 14px 10px 10px 10px;
+		}
+.provide.active, .reqrec.active{
+			border-bottom: 4px solid #39a5e3;
+		}

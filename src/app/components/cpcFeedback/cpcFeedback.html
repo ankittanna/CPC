@@ -1,0 +1,265 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="marginTop20 col-xs-12">
+      <div class="displayInlineBlock floatLeft">
+        <div class="img-circle img-responsive profilePhotoSmall">
+          <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackRequestedBy}}.jpg"/>
+        </div>
+      </div>
+      <div class="displayInlineBlock floatLeft">
+        <p class="fontSize18 fontCiscoSansTT fontColor0096d5 marginOverride">{{vm.feedbackRequestedByFullName}}</p>
+        <p class="fontSize14 fontCiscoSansTT fontColor222222 marginOverride">{{vm.currentDate}}, {{vm.currentTime}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="position: relative;">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-11">
+      <div class="borderTopColord76631 conversation-box auto-cursor col-xs-12 padding10 paddingTopOverride marginBottom50">
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-1 col-md-1 backgroundColorFFFFFF divHeight50" ng-show="vm.isToFieldVisible()">
+            <div class="col-xs-12">
+              <label class="fontSize14 fontCiscoSansTTBold">To:<span class="fontSize16 fontCiscoSansTT required">&nbsp;*</span></label>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-11 col-md-11 backgroundColorFFFFFF divHeight50" ng-show="vm.isToFieldVisible()">
+
+            <tags-input ng-model="vm.tags"
+                        display-property="username"
+                        placeholder="Feedback recipients"
+                        replace-spaces-with-dashes="false"
+                        add-on-paste="true"
+                        paste-split-pattern=";">
+              <auto-complete source="vm.loadTags($query)"
+                             min-length="0"
+                             max-results-to-show="30"
+                             debounce-delay="900"
+                             template="autocomplete-template">
+              </auto-complete>
+            </tags-input>
+
+            <script type="text/ng-template" id="autocomplete-template">
+              <div class="left-panel">
+              </div>
+              <div class="right-panel">
+                <div ng-bind-html="$highlight($getDisplayText())">
+                <span>AAA</span>
+                <span>{{data.firstName}}</span>
+                <span>{{data.lastName}}&nbsp;({{data.username}}@cisco.com)</span>
+                </div>
+              </div>
+            </script>
+
+
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-12" ng-show="!vm.isToFieldVisible()">
+            <div class="col-xs-1">
+              <label class="fontSize14 fontCiscoSansTTBold lineHeight50" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_FOR"></label>
+            </div>
+            <div class="col-xs-11 paddingTop10">
+              <div class="displayInlineBlock floatLeft">
+                <div class="img-circle img-responsive profilePhotoSmall">
+                  <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.respondTimeFeedbackAboutUsername}}.jpg"/>
+                </div>
+              </div>
+              <div class='displayInlineBlock floatLeft'>
+                <label class="fontSize16 fontCiscoSansTT fontColor0096d5">{{vm.respondTimeFeedbackAboutFullname}}</label>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-1 col-md-1"></div>
+          <div class="col-xs-12 col-sm-11 col-md-11 paddingOverride fontSize14 fontCiscoSansTT" style="position:absolute;max-height:200px;max-width:400px;overflow-y:auto;z-index: 1000;top:50px;left:80px;">
+            <ul class="list-group">
+              <li class="list-group-item usernameListItem" ng-repeat="user in vm.searchedUsers" ng-click="vm.addUser(user);" ng-mouseover="vm.highlightUser(user.username)">{{user.username}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <label class="fontSize14 fontCiscoSansTTBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+          <input class="titleTextBox borderC4C7CC fontSize14 fontCiscoSansTT" type="text" placeholder="Enter Title" ng-model="vm.feedbackTitle" ng-show="vm.isTitleInputVisible"/>
+          <label class="fontSize14 fontCiscoSansTTBold" ng-show="!vm.isToFieldVisible()">{{vm.respondTimeFeedbackTitle}}</label>
+        </div>
+        <div class="col-xs-12 marginTop20" ng-show="{{(vm.feedbackType === 'Request')}}">
+          <label class="fontSize14 fontCiscoSansTTBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_FOR"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12" ng-show="{{(vm.feedbackType === 'Request' && vm.feedbackMode === 'request')}}">
+          <label class="fontSize18 fontCiscoSansTT fontColor0096d5">
+            <div class="img-circle img-responsive profilePhotoSmall">
+              <img class="img-responsive marginRight5" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackAbout}}.jpg"/></div>{{vm.feedbackAboutFullName}}</label>
+        </div>
+        <div class="col-xs-12" ng-show="{{(vm.feedbackType === 'Request' && vm.feedbackMode === 'requestTeam')}}">
+          <div class="row" ng-show="vm.isTeamDetailsLoaded">
+            <div class="col-xs-12">
+              <ajax-loader type="small"></ajax-loader><label class="fontSize14 fontCiscoSansTTBold fontColor222222" translate="FEEDBACK.LOADING_TEAM_INFO"></label>
+            </div>
+          </div>
+          <div class="row" ng-show="!vm.isTeamDetailsLoaded">
+            <div class="col-xs-6">
+              <div class="row">
+                <div class="col-xs-12">
+                  <input class="teamConversationRadio" type="radio" id="radio01" name="radio" checked ng-click="vm.selectTeamFeedbackTarget('team')"/>
+                  <label for="radio01"><span></span><label class="fontSize14 fontCiscoSansTTBold fontColor222222">My Direct Team({{vm.contextUserDirextTeamMembersLength}})<label></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="row">
+                <div class="col-xs-1">
+                  <input class="teamConversationRadio" type="radio" id="radio02" name="radio" ng-click="vm.selectTeamFeedbackTarget('individual')"/>
+                  <label for="radio02"><span></span></label>
+                </div>
+                <div class="col-xs-11">
+                        <span class="dropdown" dropdown>
+                          <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="vm.isFullTeamFeedbackSelected">
+                            <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMember}}</label>
+                            <span class="caret pull-right marginTop8"></span>
+                          </button>
+                          <ul class="dropdown-menu fullWidth dropdownStyle">
+                            <li ng-repeat="teamMember in vm.contextUserTeamMembers">
+                              <a ng-click="vm.changeTeamMember(teamMember)">
+                                <div class="img-circle img-responsive teamPersonImage">
+                                  <img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+                                </div>
+                                <label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+                            </li>
+                          </ul>
+                         </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 marginTop20">
+          <label class="fontSize14 fontCiscoSansTTBold" translate="FEEDBACK.LABEL_DETAILS"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+          <cpc-feedback-tiny-mce></cpc-feedback-tiny-mce>
+          <!-- <div class="position-absolute uploader-position col-xs-10 padding-side-0">
+            <div ng-show="vm.showAttachments">
+              <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10"  ng-repeat="(key, val) in vm.attachmentId" >
+                <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  </label>
+            </div>
+            <div ng-show="vm.uploader.queue.length" class="col-xs-12 padding-side-0">
+              <div ng-repeat="item in vm.uploader.queue" class="col-xs-12 padding-side-0">
+                <div style="border: 1px solid darkgray;">
+                  <div class="col-xs-6">{{ item.file.name }}</div>
+                  <div class="col-xs-5" ng-show="!item.progress" style="padding-top: 2px;"></div>
+                  <div class="col-xs-5" ng-show="item.progress" style="padding-top: 2px;">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }" ng-show="item.progress === 100 ? 'true' : 'false'"></div>
+                    </div>
+                  </div>
+                  <div class="col-xs-1" style="padding-top: 2px;">
+                    <i class="fa fa-close fa-lg pull-right" ng-click="item.remove()"></i>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <div class="col-xs-12">
+          <div class="row marginTop10">
+            <div class="col-xs-12">
+                    <span ng-switch on="vm.feedbackMode">
+                       <span ng-switch-when="unrequested">
+                            <input type="checkbox" name="supportManager" id="checkboxG66" class="convTagCheckbox css-checkbox" ng-model="vm.feedbackShareWithEmployee"/><label for="checkboxG66" class="css-label marginLeft5 fontSize14 fontCiscoSansTT">I do not support the Manager forwarding the feedback to employee <span ng-show="vm.feedbackProviderListFulName.length">({{vm.shareWithEmployeesString}})</span> with my name attached. <img src="../../../client/assets/images/grey-infor-icon.png" title="The values shown here are a summary of all Provided Feedbacks since the associate has been with Cisco. This is the sample text."></img></label>
+                        </span>
+                        <span ng-switch-when="provide">
+                            <input type="checkbox" name="supportManager" id="checkboxG66" class="convTagCheckbox css-checkbox" ng-model="vm.feedbackShareWithEmployee"/><label for="checkboxG66" class="css-label marginLeft5 fontSize14 fontCiscoSansTT">I do not support the Manager forwarding the feedback to employee with my name attached. <img src="../../../client/assets/images/grey-infor-icon.png" title="The values shown here are a summary of all Provided Feedbacks since the associate has been with Cisco. This is the sample text."></img></label>
+                        </span>
+                    </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="uploader-position col-xs-10 padding-side-0">
+          <div ng-show="vm.showAttachments">
+            <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10"  ng-repeat="(key, val) in vm.attachmentId" >
+              <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  </label>
+          </div>
+          <!-- <div ng-show="vm.uploader.queue.length" class="col-xs-12 padding-side-0"> -->
+          <div ng-repeat="item in vm.uploader.queue" class="col-xs-12 padding-side-0">
+            <div style="border: 1px solid darkgray;">
+              <div class="col-xs-6">{{ item.file.name }}</div>
+              <div class="col-xs-5" ng-show="!item.progress" style="padding-top: 2px;"></div>
+              <div class="col-xs-5" ng-show="item.progress" style="padding-top: 2px;">
+                <div class="progress" style="margin-bottom: 0;">
+                  <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }" ng-show="item.progress === 100 ? 'true' : 'false'"></div>
+                </div>
+              </div>
+              <div class="col-xs-1" style="padding-top: 2px;">
+                <i class="fa fa-close fa-lg pull-right" ng-click="item.remove()"></i>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <div class="col-xs-12">
+          <div class="row borderTop7B7B7B">
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+              <!--<img src="../../../client/assets/images/attachment-icon.png" class="marginTop20" ng-click="browseForAttachment('newConversationAttachment')"/>
+                <input type="file" id="newConversationAttachment" class="displayNoneFileBrowser"/>-->
+              <label for="file-upload" class="custom-file-upload">
+                <img ng-src="/client/assets/images/attachment-icon.png" alt=""/>
+              </label>
+              <input id="file-upload" type="file" nv-file-select="" uploader="vm.uploader" multiple/>
+
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 textAlignRight">
+              <span ng-show="vm.isActivityRunning" class="pull-left fontSize14 fontCiscoSansTT fontColor222222"><ajax-loader type="small"></ajax-loader>{{vm.activityMessage}}</span>
+              <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_CANCEL" ng-click="vm.cancelRequestFeedback();"></button>
+                    <span ng-switch on="vm.feedbackMode">
+                        <span ng-switch-when="provide">
+                            <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-show='vm.isDraftButtonVisible' ng-click="vm.saveProvidedFeedbackAsDraft()" ng-disabled="vm.saveDraftPossible == 'false'"></button>
+                            <button class="shareWithTeamButton marginTop20 fontSize14 fontCiscoSansTT" translate="FEEDBACK.BUTTON_PROVIDE" ng-click="vm.provideFeedback(vm.feedbackMode)" ng-disabled="vm.providePossible == 'false'"></button>
+                        </span>
+                        <span ng-switch-when="unrequested">
+                            <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-show='vm.isDraftButtonVisible' ng-click="vm.saveFeedbackAsDraft()" ng-disabled="vm.saveDraftPossible == 'false'"></button>
+                            <button class="shareWithTeamButton marginTop20 fontSize14 fontCiscoSansTT" translate="FEEDBACK.BUTTON_PROVIDE_UNREQUESTED" ng-click="vm.provideFeedback(vm.feedbackMode)" ng-disabled="vm.providePossible == 'false'"></button>
+                        </span>
+                        <span ng-switch-when="request">
+                            <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-show='vm.isDraftButtonVisible' ng-click="vm.saveFeedbackAsDraft()" ng-disabled="vm.saveDraftPossible == 'false'"></button>
+                            <button class="shareWithTeamButton marginTop20 fontSize14 fontCiscoSansTT" translate="FEEDBACK.BUTTON_REQUEST" ng-click="vm.requestFeedback(vm.feedbackMode)" ng-disabled="vm.requestPossible == 'false'"></button>
+                        </span>
+                        <span ng-switch-when="requestUser">
+                            <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-show='vm.isDraftButtonVisible' ng-click="vm.saveFeedbackAsDraft()" ng-disabled="vm.saveDraftPossible == 'false'"></button>
+                            <button class="shareWithTeamButton marginTop20 fontSize14 fontCiscoSansTT" translate="FEEDBACK.BUTTON_REQUEST" ng-click="vm.requestFeedback(vm.feedbackMode)" ng-disabled="vm.requestPossible == 'false'"></button>
+                        </span>
+                        <span ng-switch-when="requestTeam">
+                            <button class="addCCButton marginTop20 fontSize14 fontCiscoSansTT" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-show='vm.isDraftButtonVisible' ng-click="vm.saveFeedbackAsDraft()" ng-disabled="vm.saveDraftPossible == 'false'"></button>
+                            <button class="shareWithTeamButton marginTop20 fontSize14 fontCiscoSansTT" translate="FEEDBACK.BUTTON_REQUEST" ng-click="vm.requestFeedback(vm.feedbackMode)" ng-disabled="vm.requestPossible == 'false'"></button>
+                        </span>
+                    </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12">
+                    <span ng-switch on="vm.feedbackMode">
+                       <span ng-switch-when="unrequested">
+                           <label class="marginLeft5 fontSize14 fontCiscoSansTTLight marginTop10" translate="FEEDBACK.MANAGER_SHARE_MSG"></label>
+                        </span>
+                    </span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>

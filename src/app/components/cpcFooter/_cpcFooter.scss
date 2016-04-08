@@ -1,0 +1,25 @@
+footer{
+	position: fixed;
+	bottom: 0;
+  	left: 0;
+  	right: 0;
+    height: 40px;
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;*/
+
+	background-color: #E6E7E9;
+	& > div > .row{
+		padding: 8px 0 8px 40px;
+	}
+    label.fontArialRegular{
+        font-family: Arial, Helvetica, sans-serif;
+	    font-weight: normal;
+    }
+    label.fontSize13{
+        font-size: 13px;
+    }
+    label.fontSize12{
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,271 @@
+<!-- <div class="row">
+  <div class="col-xs-6 col-md-6 hidden-sm hidden-xs padding-side-0">
+    <label class="fontCiscoSansTTLight fontSize22 fontColor333439"
+           translate="FEEDBACK.TABLE_REQUEST_TABLE"></label>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <button class="pull-left greenButton fontColor858587 fontSize14 fontCiscoSansTTBold" translate="FEEDBACK.TABLE_REQUEST_NEW_FEEDBACK" ng-click="vm.requestNewFeedback()" ng-show='vm.isRequestNewFeedbackButtonVisible'></button>
+  </div>
+  <div class="pull-right col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-xs-8 divHeight56 padding-side-0 visible-lg visible-md hidden-sm hidden-xs">
+      <div class="col-xs-12 padding-side-0">
+        <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize"
+                    items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPage"
+                    ng-change="vm.changePage()" class="pagination-sm pull-right" previous-text="&lsaquo;"
+                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 visible-lg visible-md hidden-sm hidden-xs">
+      <label>|</label>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10 paddingLeftOverride pull-right">
+      <div class="select_style rounded divMinWidth110">
+        <select ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+                ng-change="vm.changedQuarterValue(vm.quarter)">
+          <!-- <option value="">Select</option> -->
+        </select>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- <div class="col-xs-12 visible-xs">
+    <div class="col-xs-12 divHeight56">
+      <div class="col-xs-12">
+        <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize"
+                    items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPage"
+                    ng-change="vm.changePage()" class="pagination-sm pull-right" previous-text="&lsaquo;"
+                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+      </div>
+    </div>
+    <div class="col-xs-12 paddingLeftOverride pull-left">
+      <div class="select_style rounded divMinWidth110 pull-left">
+        <select class="pull-left" ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+                ng-change="vm.changedQuarterValue(vm.quarter)">
+          <option value="">Select</option>
+        </select>
+        <span></span>
+      </div>
+    </div>
+    <div class="clearfix">&nbsp;</div>
+  </div> -->
+
+
+<div class="row">
+	<div class="col-xs-12">
+	    <table class="table table-provide-feedback fontCiscoSansTT fontSize14 table-striped">
+	      <thead class='backgroundColorFFFFFF'>
+	
+	      <tr class="fontSize14 fontCiscoSansTTBold hidden-xs hidden-sm visible-md visible-lg backgroundColorFFFFFF">
+	        <th class="{{vm.reverse1}} position-relative"
+	            ng-click='vm.reverse1=!vm.reverse1;vm.reverse2="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("title", vm.reverse1);$event.stopPropagation();'>
+	          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_TITLE"></div>
+	          <div class="heading1"></div>
+	        </th>
+	        <th class="{{vm.reverse2}} position-relative"
+	            ng-click='vm.reverse2=!vm.reverse2;vm.reverse1="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("requested_by", vm.reverse2);$event.stopPropagation();'>
+	          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_REQUESTED_BY"></div>
+	          <div class="heading1"></div>
+	        </th>
+	        <th class="{{vm.reverse3}} position-relative"
+	            ng-click='vm.reverse3=!vm.reverse3;vm.reverse1="";vm.reverse2="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("provider", vm.reverse3);$event.stopPropagation();'>
+	          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_PROVIDER"></div>
+	          <div class="heading1"></div>
+	        </th>
+	        <th class="{{vm.reverse4}} position-relative"
+	            ng-click='vm.reverse4=!vm.reverse4;vm.reverse1="";vm.reverse2="";vm.reverse3="";vm.reverse5=""; vm.sortColumn("feedbackStatus", vm.reverse4);$event.stopPropagation();'>
+	          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_STATUS"></div>
+	          <div class="heading1"></div>
+	        </th>
+	        <th>
+	          <div class="fontSize14" translate="FEEDBACK.TABLE_ACTION">
+	            <img src="/client/assets/images/grey-infor-icon.png"/>
+	          </div>
+	        </th>
+	      </tr>
+	      </thead>
+	      <tbody>
+	      <tr class="hidden-xs hidden-sm visible-md visible-lg backgroundColorFFFFFFOverride">
+	        <td>
+	          <div class="form-group has-feedback marginBottomOverride">
+	            <input typeahead-wait-ms="300" typeahead-on-select="vm.activateAfterSearch($item, $model, $label)" typeahead-append-to-body="true" type="text" ng-model="vm.searchTitle" placeholder="Search" typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control fontCiscoSansTTLight fontSize14  borderRadius30 searchInput">
+	            <i class="fa fa-search form-control-feedback lineHeight16px"></i>
+	          </div>
+	        </td>
+	        <td>
+	          <!--<div class="select_style rounded divMinWidth110">
+	             <select ng-model="vm.usernameFilter" ng-options="by for by in vm.byFilter" ng-change="vm.changedBy()">
+	              <option value="">All</option>
+	            </select> 
+	            <span></span>-->
+	          </div>
+	        </td>
+	        <td></td>
+	        <td>
+	          <div class="select_style rounded divMinWidth110">
+	            <select ng-model="vm.statusFilterValue" ng-options="status for status in vm.status" ng-change="vm.changedStatus()">
+	              <option value="">All</option>
+	            </select>
+	            <span></span>
+	          </div>
+	        </td>
+	        <td> <a href="" ng-click="vm.clearFilter()" translate="FEEDBACK.TABLE_CLEAR_FILTER"></a> </td>
+	      </tr>
+	      <tr class="visible-xs visible-sm hidden-md hidden-lg">
+	        <td>
+	           <div class="col-xs-12 col-sm-4 paddingLeftOverride">
+	             <div class="row">
+	               <div class="col-xs-12 marginTop10">
+	                 <label translate="FEEDBACK.TABLE_TITLE"></label>
+	               </div>
+	               <div class="col-xs-12">
+	                 <div class="form-group has-feedback marginBottomOverride">
+	                   <input typeahead-wait-ms="300" typeahead-on-select="vm.activateAfterSearch($item, $model, $label)" typeahead-append-to-body="true" type="text" ng-model="vm.searchTitle" placeholder="Search" typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control fontCiscoSansTTLight fontSize14 borderRadius30 searchInput">
+	                   <i class="fa fa-search form-control-feedback lineHeight16px"></i>
+	                 </div>
+	               </div>
+	             </div>
+	           </div>
+	              
+	            <div class="col-xs-6 col-sm-4 paddingLeftOverride">
+	              <div class="row">
+	                <div class="col-xs-12 marginTop10">
+	                  <label translate="FEEDBACK.TABLE_STATUS">Status</label>
+	                </div>
+	                <div class="col-xs-12">
+	                  <div class="select_style rounded divMinWidth110">
+	                    <select ng-model="vm.statusFilterValue" ng-options="status for status in vm.status" ng-change="vm.changedStatus()">
+	                      <option value="">All</option>
+	                    </select>
+	                    <span></span>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+	            <div class="col-xs-6 col-sm-4 marginTop50">
+	              <div class="row">
+	                <div class="col-xs-12">
+	                  <a class="fontColor39a5e3 fontSize14 fontCiscoSansTTBold pull-right" ng-click="vm.clearFilter();" translate="FEEDBACK.TABLE_CLEAR_FILTER"></a>
+	                </div>
+	                <div>
+	                </div>
+	              </div>
+	            </div>
+	        </td>
+	      </tr>
+	      <tr ng-show="vm.isReceiveFeedbacksLoading">
+	        <td colspan="6" class="textAlignCenter"><label><ajax-loader type="small"></ajax-loader>Loading Feedbacks... Please wait.</label></td>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	      </tr>
+	      <tr ng-show="vm.isNoRecordsFound">
+	          <td colspan="6" class="textAlignCenter"><label>You don’t have new Feedback Requests for this Quarter</label></td>
+	          <td></td>
+	          <td></td>
+	          <td></td>
+	          <td></td>
+	          <td></td>
+	        </tr>
+	      <tr ng-repeat="data in vm.reqrecFeedbackList track by data.id" ng-show='!vm.isReceiveFeedbacksLoading'>
+	        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT hidden-xs hidden-sm visible-md visible-lg">
+	            <div class="row">
+	
+	              <div class="col-xs-1">
+	                <a>
+	                  <img ng-show="vm.isAttachmentVisible(data)" src="../../../client/assets/images/attachment-icon.png">
+	                </a>
+	              </div>
+	              <div class="col-xs-10" title='{{data.title}}'>{{vm.truncateFeedbackTitle(data.title)}}</div>
+	            </div>
+	        </td>
+	        <td class="fontColor222222 fontSize14 fontCiscoSansTT hidden-xs hidden-sm visible-md visible-lg">
+	          <!--<img src="../../../client/assets/images/grey-infor-icon.png" title="The values shown here are a summary of all Requested/ Received Feedbacks since the associate has been with Cisco." class="marginRight5"/>-->{{::data.requester || 'NA'}}
+	        </td>
+	        <td class="fontColor222222 fontSize14 fontCiscoSansTT hidden-xs hidden-sm visible-md visible-lg">
+	          {{::data.provider || 'NA'}}
+	        </td>
+	        <td class="fontColor222222 fontSize14 fontCiscoSansTT hidden-xs hidden-sm visible-md visible-lg"><div class="feedbackStatusIcon {{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).iconClass}} displayInlineBlock floatLeft marginTop5"></div><div class="marginLeft5 displayInlineBlock floatLeft">{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).statusString}}</div></td>
+	        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT hidden-xs hidden-sm visible-md visible-lg">
+	            <span ng-switch on="{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).actionCode}}">
+	              <span class="animate-switch" ng-switch-when="1">
+	               <a href="" class="marginRight5" ng-show="vm.isViewActionAvailable" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	               <a href="" class="marginRight5" ng-show="vm.isProcessActionAvailable" ng-click="vm.requestFeedback(data, 'request')" translate="FEEDBACK.TABLE_REQUEST"></a>
+	               <a href="" class="marginRight5" ng-show="vm.isProcessActionAvailable && data.feedbackStatus === 'DRAFT'" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a>
+	              </span>
+	              <span class="animate-switch" ng-switch-when="2">
+	                <a href="" class="marginRight5" ng-show="vm.isViewActionAvailable" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	                <!--<a href="" class="marginRight5" ng-show="vm.isProcessActionAvailable" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a> -->
+	              </span>
+	              <span class="animate-switch" ng-switch-when="3">
+	                <a href="" class="marginRight5" ng-show="vm.isViewActionAvailable" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	                <a href="" class="marginRight5" ng-show="vm.isProcessActionAvailable" ng-click="vm.sendReminder(data, 'remind')" translate="FEEDBACK.TABLE_SEND_REMINDER"></a>
+	                <!--<a href="" class="marginRight5" ng-show="vm.isProcessActionAvailable" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a>-->
+	              </span>
+	              <span class="animate-switch" ng-switch-default>
+	                <a href="" class="marginRight5" ng-show="vm.isViewActionAvailable" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	              </span>
+	            </span>
+	        </td>
+	        <td class="visible-xs visible-sm hidden-md hidden-lg">
+	          <div class="row">
+	            <div class="col-xs-1">
+	              <a>
+	                <img ng-show="vm.isAttachmentVisible(data)" src="../../../client/assets/images/attachment-icon.png">
+	              </a>
+	            </div>
+	            <div class="col-xs-11 paddingOverride">
+	              <div class="col-xs-12">
+	                <label class="fontSize14 fontCiscoSansTT fontColor39a5e3" title='{{data.title}}'>{{vm.truncateFeedbackTitle(data.title)}}</label>
+	              </div>
+	              <div class="col-xs-12">
+	                <label class="fontSize14 fontCiscoSansTTBold fontColorBAB5AF" translate="FEEDBACK.TABLE_REQUESTED_BY">: </label>
+	                <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{::data.requester || 'NA'}}</label><img src="../../../client/assets/images/grey-infor-icon.png" class="marginLeft5"/>
+	              </div>
+	              <div class="col-xs-12">
+	                <label class="fontSize14 fontCiscoSansTTBold fontColorBAB5AF" translate="FEEDBACK.TABLE_REQUESTED_ON">: </label>
+	                <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.translateDate(data.requested_on)}}</label>
+	              </div>
+	              <div class="col-xs-12">
+	                <div class="feedbackStatusIcon {{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).iconClass}} displayInlineBlock floatLeft marginTop5"></div>
+	                <div class="marginLeft5 displayInlineBlock floatLeft">
+	                  <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).statusString}}</label>
+	                </div>
+	              </div>
+	              <div class="col-xs-12 fontColor39a5e3 fontSize14 fontCiscoSansTT paddingOverride">
+	                <span ng-switch on="{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).actionCode}}" class="pull-right">
+	                  <span class="animate-switch" ng-switch-when="1">
+	                   <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	                   <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.provideFeedback($index)" translate="FEEDBACK.TABLE_REQUEST"></a>
+	                   <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-show="vm.isProcessActionAvailable" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a>
+	                  </span>
+	                  <span class="animate-switch" ng-switch-when="2">
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-show="vm.isProcessActionAvailable" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a>
+	                  </span>
+	                  <span class="animate-switch" ng-switch-when="3">
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.viewFeedback(data, 'view')" translate="FEEDBACK.TABLE_VIEW"></a>
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.provideFeedback($index)" translate="FEEDBACK.TABLE_SEND_REMINDER"></a>
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-show="vm.isProcessActionAvailable" ng-click="vm.deleteFeedback(data, 'delete')" translate="FEEDBACK.TABLE_DELETE"></a>
+	                  </span>
+	                  <span class="animate-switch" ng-switch-default>
+	                    <a href="" class="marginRight5 fontColor39a5e3 fontCiscoSansTTBold" ng-click="vm.declineFeedback($index)" translate="FEEDBACK.TABLE_VIEW"></a>
+	                  </span>
+	                </span>
+	              </div>
+	            </div>
+	          </div>
+	        </td>
+	      </tr>
+	      </tbody>
+	    </table>
+	</div>
+    <div class="col-xs-12 paddingTop10 hidden-lg hidden-md visible-sm visible-xs">
+    	<button ng-show="vm.showLoadMore" ng-click="vm.getMoreFeedbacks()" class="viewAllSyncUpConversationsButton fontWeightBold marginBottom5 pull-right" translate="HOME.LOAD_MORE"></button>
+  	</div>
+  </div>
+

@@ -1,0 +1,41 @@
+.reminderSentBox
+{
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+  background-color: #F8F8F8;
+}
+
+.declineFeedbackButton {
+  background: #D76631;
+  background-image: -webkit-linear-gradient(top, #D76631, #D76631);
+  background-image: -moz-linear-gradient(top, #D76631, #D76631);
+  background-image: -ms-linear-gradient(top, #D76631, #D76631);
+  background-image: -o-linear-gradient(top, #D76631, #D76631);
+  background-image: linear-gradient(to bottom, #D76631, #D76631);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTTBold;
+  color: #FFFFFF;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #D76631 1px;
+  text-decoration: none;
+}
+
+.declineFeedbackButton:hover {
+  color: #FFFFFF;
+  background: #C25C2C;
+  background-image: -webkit-linear-gradient(top, #C25C2C, #C25C2C);
+  background-image: -moz-linear-gradient(top, #C25C2C, #C25C2C);
+  background-image: -ms-linear-gradient(top, #C25C2C, #C25C2C);
+  background-image: -o-linear-gradient(top, #C25C2C, #C25C2C);
+  background-image: linear-gradient(to bottom, #C25C2C, #C25C2C);
+  text-decoration: none;
+}
+
+.feedbackDetails p img
+{
+  max-width:100%;
+}

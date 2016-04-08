@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row marginBottom10">
+      <div class="col-xs-12 paddingOverride">
+      	<label class="marginTop40 titleFont" translate="SYNCUP_CONVERSATION.HEADING_THIS_QUARTER"></label>
+        <div class="row">
+          <div ng-show="vm.directHierarchy" class="col-xs-12 col-sm-4 col-md-3 col-lg-3 marginBottom20" title="Create New Conversation">
+            <div class="thumbnail">
+              <div class="dashedDiv divMinHeight120 conversation-box col-xs-12 text-center" ng-click="createNewConversation('new', 'self')">
+              	<span class="glyphicon glyphicon-plus fontSize75px fontColorB9B9BF marginTop20"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 marginBottom20" ng-show="!loadedConversations">
+            <div class="thumbnail" ng-show="loading">
+              <ajax-loader type="medium" ng-style="{position:'relative',left:'50%',top:'50%'}"></ajax-loader>
+            </div>
+            <div ng-show="!loading">
+            	<span colspan="8" ng-show="!vm.loading" translate="SYNCUP_CONVERSATION_DETAILS.NO_CONVERSATION_MSG_CURRENT"></span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 marginBottom20"
+          ng-repeat="conversation in loadedConversations"
+          title="{{conversation.topicTitle}}"
+          ng-click="loadConversationDetailPage('self', conversation, conversation.convStatus, $index, loadedConversations.Conversation.length)">
+            <div class="thumbnail">
+
+              <div style="max-height:116px;" class="{{conversation.conversation[0].status=='DRAFT' || conversation.conversation[1].status=='DRAFT'?'red':'green'}} conversation-box col-xs-12">
+              	<div class="row">
+              		<div style="height:70px;" class="col-xs-9 fontColor858587 fotnSize14 fontCiscoSansTTBold">{{truncateConversationTitle(conversation.topicTitle)}}</div>
+                    <div class="col-xs-3 paddingOverride">
+                    	<div ng-show="{{!isConversationDraft(conversation.conversation)}}">
+                       		<div ng-show="{{!isConversationDraft(conversation.conversation)}}" class="greenCircleDiv displayInlineBlock" title="{{conversation.conversation[0].status==='EMP_SUBMIT'?'Employee':'Manager'}}">{{conversationSubmittedBy(conversation.conversation[0])}}</div>
+                        	<div class="greenCircleDiv displayInlineBlock" title="{{conversation.conversation[1].status==='MGR_SUBMIT'?'Manager':'Employee'}}" ng-show="{{conversation.convStatus==='CLOSE'}}">{{conversationSubmittedBy(conversation.conversation[1])}}</div>
+                        	<span ng-show="{{conversation.conversation[1].status ==='DRAFT'}}" class="fa fa-save"></span>
+                        </div>
+                        <div ng-show="{{isConversationDraft(conversation.conversation)}}">
+                        	<div class="displayInlineBlock">
+                            	<span class="fa fa-save"></span>
+                            </div>
+                        </div>
+                    </div>
+              		<!--<span class="fa fa-{{conversation.conversation[0].status=='DRAFT'?'save':'check-circle'}} pull-right"></span>
+                    <span class="fa fa-check-circle pull-right"></span>-->
+               	</div>
+              	<div class="clearfix"></div>
+                <div class="row marginTop15">
+                	<div class="col-xs-6">
+                    	<label class="detail fontColor333439 fotnSize14 fontCiscoSansTTBold">{{conversation.ownerUsername.toLowerCase()}}</label>
+                    </div>
+                    <div class="col-xs-6 paddingOverride paddingRight10">
+                    	<label class="date fontSize14 pull-right fontColor999999 fotnSize14 fontCiscoSansTT">{{conversation.created_on_String}}</label>
+                    </div>
+               </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

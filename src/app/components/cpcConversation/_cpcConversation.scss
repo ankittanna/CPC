@@ -1,0 +1,186 @@
+.conversation-box {
+  	width: 100%;
+  	min-height: 120px;
+  	cursor: pointer;
+  	background-color: #EBEAEA;
+  	.date{
+  		padding-top: 5px;
+  		font-size: 1.2rem;
+  	}
+  	.detail{
+  		font-size: 1.4 rem;
+  	}
+    &.red {
+      border-top: 4px solid red;
+      .fa{
+      	color: black;
+      }
+      background-color: #F8F8F8;
+    }
+    &.green {
+      border-top: 4px solid green;
+      .fa{
+      	color: green;
+      }
+      background-color: #F8F8F8;
+    }
+    &.dashed {
+      border: 1px dashed #D4D3D3;
+    }
+  }
+
+.titleTextBox
+{
+  width: 100%;
+  font-family: CiscoSansTT-Light;
+  color: #000000;
+  font-size: 16px;
+  padding: 5px 5px 5px 10px;
+}
+
+.titleTextBox:focus, input:focus{
+    outline: 0;
+}
+
+.shareWithTeamButton {
+  background: #BBD74B;
+  background-image: -webkit-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -moz-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -ms-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -o-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: linear-gradient(to bottom, #BBD74B, #BBD74B);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #646871;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #BBD74B 1px;
+  text-decoration: none;
+}
+
+.shareWithTeamButton:hover {
+  background: #acc938;
+  background-image: -webkit-linear-gradient(top, #acc938, #acc938);
+  background-image: -moz-linear-gradient(top, #acc938, #acc938);
+  background-image: -ms-linear-gradient(top, #acc938, #acc938);
+  background-image: -o-linear-gradient(top, #acc938, #acc938);
+  background-image: linear-gradient(to bottom, #acc938, #acc938);
+  text-decoration: none;
+}
+
+.saveAsDraftButton, .cancelButton
+{
+  background: #D1D1D1;
+  background-image: -webkit-linear-gradient(top, #D1D1D1, #D1D1D1);
+  background-image: -moz-linear-gradient(top, #D1D1D1, #D1D1D1);
+  background-image: -ms-linear-gradient(top, #D1D1D1, #D1D1D1);
+  background-image: -o-linear-gradient(top, #D1D1D1, #D1D1D1);
+  background-image: linear-gradient(to bottom, #D1D1D1, #D1D1D1);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #646871;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #D1D1D1 1px;
+  text-decoration: none;
+}
+
+.true.deleteButton
+{	
+  background: #C4C7CC;
+  background-image: -webkit-linear-gradient(top, #C4C7CC, #C4C7CC);
+  background-image: -moz-linear-gradient(top, #C4C7CC, #C4C7CC);
+  background-image: -ms-linear-gradient(top, #C4C7CC, #C4C7CC);
+  background-image: -o-linear-gradient(top, #C4C7CC, #C4C7CC);
+  background-image: linear-gradient(to bottom, #C4C7CC, #C4C7CC);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #676a72;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #C4C7CC 1px;
+  text-decoration: none;
+}
+
+.deleteButton
+{	
+  background: #E6E7E8;
+  background-image: -webkit-linear-gradient(top, #E6E7E8, #E6E7E8);
+  background-image: -moz-linear-gradient(top, #E6E7E8, #E6E7E8);
+  background-image: -ms-linear-gradient(top, #E6E7E8, #E6E7E8);
+  background-image: -o-linear-gradient(top, #E6E7E8, #E6E7E8);
+  background-image: linear-gradient(to bottom, #E6E7E8, #E6E7E8);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #C4C7CC;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #E6E7E8 1px;
+  text-decoration: none;
+}
+
+.saveAsDraftButton:hover, .cancelButton:hover
+{
+  background: #A9A9A9;
+  background-image: -webkit-linear-gradient(top, #A9A9A9, #A9A9A9);
+  background-image: -moz-linear-gradient(top, #A9A9A9, #A9A9A9);
+  background-image: -ms-linear-gradient(top, #A9A9A9, #A9A9A9);
+  background-image: -o-linear-gradient(top, #A9A9A9, #A9A9A9);
+  background-image: linear-gradient(to bottom, #A9A9A9, #A9A9A9);
+  text-decoration: none;
+}
+
+input[type=checkbox].css-checkbox {
+              position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+            }
+
+            input[type=checkbox].css-checkbox + label.css-label {
+              padding-left:26px;
+              height:21px; 
+              display:inline-block;
+              line-height:21px;
+              background-repeat:no-repeat;
+              background-position: 0 0;
+              vertical-align:middle;
+              cursor:pointer;
+
+            }
+
+            input[type=checkbox].css-checkbox:checked + label.css-label {
+              background-position: 0 -21px;
+            }
+            label.css-label {
+        background-image:url(/client/assets/images/checkbox.png);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+
+div.upload {
+  padding-top: 10px;
+  background-image: url(../../../client/assets/images/attachment-icon.png);
+  width: 80px;
+  height: 80px;
+  background-repeat:no-repeat;
+  overflow: hidden;
+}
+
+div.upload input {
+  display: block !important;
+  width: 80px !important;
+  height: 80px !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+}

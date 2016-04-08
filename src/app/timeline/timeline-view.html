@@ -1,0 +1,70 @@
+<div class="container-fluid">
+
+  <div class="row feedbackObject">
+    <div class="row">
+      <div class="marginTop20 col-xs-12">
+        <div class="displayInlineBlock floatLeft">
+          <div class="img-circle img-responsive profilePhotoSmall">
+            <img class="marginRight5 img-circle" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackProvider}}.jpg"/>
+          </div>
+        </div>
+        <div class="displayInlineBlock floatLeft">
+          <p class="fontSize18 fontCiscoSansTT fontColor0096d5 marginOverride">{{vm.feedbackProvider}}</p>
+          <p class="fontSize14 fontCiscoSansTT fontColor222222 marginOverride">{{vm.feedhackReceivedOnDate}}, {{vm.feedhackReceivedOnTime}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-11">
+        <div class="borderTopColor7CBC59 conversation-box col-xs-12 padding10 paddingTopOverride marginBottom50">
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label>
+          </div>
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.feedbackTitle}}</label>
+          </div>
+
+          <div class="col-xs-12 marginTop20">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label>
+          </div>
+          <div class="col-xs-12">
+            <p class="fontSize14 fontCiscoSansTTLight fontColor222222" ng-bind-html="vm.feedbackResponse | sanitize"></p>
+          </div>
+
+          <div class="col-xs-12 marginTop20" ng-show="vm.tags.length">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222">Tags</label>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 padding-side-0" ng-show="vm.tags.length">
+            <div class="col-xs-12">
+              <div ng-repeat="(key, value) in vm.tags" style="display: inline;">
+                <span class="btn btn-default btn-sm"> {{::value}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 marginTop20" ng-show="vm.attachment_id.length">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222">Attachment</label>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 padding-side-0 marginTop20" ng-show="vm.attachment_id.length">
+            <div ng-repeat="(key, value) in vm.attachment_id" style="display: inline;">
+              <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{value}}</a>  </label>
+            </div>
+          </div>
+
+          <div class="col-xs-12 marginTop20">
+            <div class="row borderTop7B7B7B">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <button class="pull-right greenButton fontColor858587 fontSize14 fontCiscoSansTTBold ng-scope" ng-click="vm.goBack()"><span class="ng-scope">Go back</span></button>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+</div>

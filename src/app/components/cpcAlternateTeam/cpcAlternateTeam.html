@@ -1,0 +1,52 @@
+<div class="container-fluid" >
+  <div class="container">
+    <div class="row">
+     <div id="cpcAltTeamComponent" class="col-xs-12 marginTop50 paddingOverride">
+      <label class="titleFont" translate="TEAM.ALTERNATE_LABEL"></label>
+      <div class="col-xs-12 greyBox minHeightOverride" >
+      <div ng-if="vm.isMobileTablet == false">
+       <div id="reportee{{reportee.id}}" ng-repeat="reportee in vm.reportees" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-xs hidden-sm visible-lg visible-md">
+            <div class="teamImages col-xs-4 col-sm-4 col-md-12 col-lg-12" >
+                <div class="img-circle img-responsive teamPersonImage" ng-click="vm.openModal(reportee.id, reportee.username, reportee)">
+                  <img src="http://wwwin.cisco.com/dir/photo/std/{{reportee.username}}.jpg"/>
+                </div>
+                <span class="teamIcons" ng-show="reportee.isPeopleManager=='Y'">
+                    <img src="/client/assets/images/team-icon-20px.png"/>
+                </span>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12" >
+                <label class="teamName" title="{{reportee.username}}">
+                    {{vm.getTruncatedName(reportee.firstName,reportee.lastName)}}
+                </label>
+                <span  class="fa fa-chevron-right pull-right visible-xs visible-sm hidden-md hidden-lg marginTop20"></span>
+            </div>
+        </div>
+       </div>
+       <div ng-if="vm.isMobileTablet == true">
+        <div id="reportee{{reportee.id}}" ng-repeat="reportee in vm.reportees" class="col-xs-12 col-sm-12 col-md-2 col-lg-2 paddingOverride marginBottom20">
+           <div class="col-xs-11 col-sm-11 col-md-9 col-lg-9 paddingOverride" ng-click="vm.altOpenMobileView(reportee.id, reportee.username, reportee)">
+	            <div class="col-xs-3 col-sm-3 col-md-9 col-lg-9 paddingOverride" >
+	                <div class="img-circle img-responsive teamPersonImage">
+	                  <img src="http://wwwin.cisco.com/dir/photo/std/{{reportee.username}}.jpg"/>
+	                </div>
+	                <span class="teamIconsMobile" ng-show="reportee.isPeopleManager=='Y'">
+	                    <img style="margin-left:-12px;padding-top:50px;position:absolute" src="/client/assets/images/team-icon-20px.png"/>
+	                </span>
+	            </div>
+	            <div class="col-xs-8 col-sm-8 col-md-12 col-lg-12 paddingOverride" >
+	                <label class="teamName marginTop20" title="{{reportee.username}}">
+	                    {{reportee.firstName}} {{reportee.lastName}}
+	                </label>
+	            </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-9 col-lg-9 paddingOverride">
+            	<span ng-click="vm.goToEmployeeHomeAlt(reportee.username)" class="fa fa-chevron-right visible-xs visible-sm hidden-md hidden-lg marginTop20"></span>
+            </div>
+            <cpc-mobile-team-profile id="profile{{reportee.id}}" class="mobilePopupContent hidden-md hidden-lg" style="display:none;"></cpc-mobile-team-profile>
+        </div>
+       </div>
+      </div>
+     </div>
+ 	</div>
+  </div>
+</div>

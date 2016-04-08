@@ -1,0 +1,159 @@
+/* Responsive Tab Code */
+
+ul#profilePageTab.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 37px;
+	border-bottom: 1px solid #DADADA;
+	width: 100%;
+	background-color: #f8f8f8;
+}
+
+ul#profilePageTab.tabs li {
+	float: left;
+	margin: 0;
+	cursor: pointer;
+	padding: 0px 10px;
+	height: 37px;
+	line-height: 37px;
+	background-color: #f8f8f8;
+	color: #646871;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #f8f8f8;
+	border-bottom: 1px solid #DADADA;
+	font-family: CiscoSansTT;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.tab_last { }
+
+ul#profilePageTab.tabs li:hover {
+	background-color: #0086c0;
+	color: #FFFFFF;
+	font-family: CiscoSansTT;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+ul#profilePageTab.tabs li.active {
+	background-color: #fff;
+	color: #0096d5;
+	font-family: CiscoSansTT;
+	font-weight: bold;
+	font-size: 14px;
+	display: block;
+	border-bottom: 3px solid #0096d5;
+}
+
+.tab_container {
+	border: 1px solid #f8f8f8;
+	border-top: none;
+	clear: both;
+	float: left;
+	background: #f8f8f8;
+	padding: 20px;
+}
+
+.tab_content {
+	/*display: none;*/
+	background-color: #f8f8f8;
+}
+
+.tab_drawer_heading { display: none; }
+
+@media screen and (max-width: 991px) {
+	.tabs {
+		display: none;
+	}
+	.tab_drawer_heading {
+		font-size: 14px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		background-color: #e8eae9;
+		color: #3F3F3F;
+		border: 1px solid #f8f8f8;
+		margin: 0;
+		padding: 15px 10px;
+		display: block;
+		cursor: pointer;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.tab_drawer_heading:hover {
+		background-color: #0086c0;
+		color: #fff;
+
+	}
+
+	.d_active {
+		background-color: #0086c0;
+		color: #FFFFFF;
+		border-top:2px solid #e8eae9;
+		border-bottom:2px solid #e8eae9;
+	}
+}
+
+.syncUpConversationsButton {
+  background: #BBD74B;
+  background-image: -webkit-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -moz-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -ms-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: -o-linear-gradient(top, #BBD74B, #BBD74B);
+  background-image: linear-gradient(to bottom, #BBD74B, #BBD74B);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #646871;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #BBD74B 1px;
+  text-decoration: none;
+}
+
+.syncUpConversationsButton:hover {
+  background: #acc938;
+  background-image: -webkit-linear-gradient(top, #acc938, #acc938);
+  background-image: -moz-linear-gradient(top, #acc938, #acc938);
+  background-image: -ms-linear-gradient(top, #acc938, #acc938);
+  background-image: -o-linear-gradient(top, #acc938, #acc938);
+  background-image: linear-gradient(to bottom, #acc938, #acc938);
+  text-decoration: none;
+}
+
+.viewAllSyncUpConversationsButton {
+  background: #B5BCC3;
+  background-image: -webkit-linear-gradient(top, #B5BCC3, #B5BCC3);
+  background-image: -moz-linear-gradient(top, #B5BCC3, #B5BCC3);
+  background-image: -ms-linear-gradient(top, #B5BCC3, #B5BCC3);
+  background-image: -o-linear-gradient(top, #B5BCC3, #B5BCC3);
+  background-image: linear-gradient(to bottom, #B5BCC3, #B5BCC3);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #646871;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #B5BCC3 1px;
+  text-decoration: none;
+}
+
+.viewAllSyncUpConversationsButton:hover {
+  background: #888888;
+  background-image: -webkit-linear-gradient(top, #888888, #888888);
+  background-image: -moz-linear-gradient(top, #888888, #888888);
+  background-image: -ms-linear-gradient(top, #888888, #888888);
+  background-image: -o-linear-gradient(top, #888888, #888888);
+  background-image: linear-gradient(to bottom, #888888, #888888);
+  text-decoration: none;
+}

@@ -1,0 +1,289 @@
+<div class="row">
+	<div class="col-xs-12 marginTop40">
+	  <label class="fontSize18 fontCiscoSansTTLight fontColor39a5e3" translate="FEEDBACK.TABLE_SUMMARY"></label>
+	</div>
+</div>
+<div class="row">
+  	  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+   		<button class="pull-left greenButton fontColor858587 fontSize14 fontCiscoSansTTBold" translate="FEEDBACK.TABLE_REQUEST_NEW_FEEDBACK" ng-click="vm.requestNewFeedback()" ng-show='vm.isRequestNewTeamFeedbackButtonVisible'></button>
+	  </div>
+
+	  <div class="pull-right col-lg-6 col-md-6 col-sm-6 col-xs-6">
+	    <div class="col-xs-8 divHeight56 padding-side-0 visible-lg visible-md hidden-sm hidden-xs">
+	      <div class="col-xs-12 padding-side-0">
+	        <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize"
+	                    items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPage"
+	                    ng-change="vm.changePage()" class="pagination-sm pull-right" previous-text="&lsaquo;"
+	                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+	      </div>
+	    </div>
+	    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 visible-lg visible-md hidden-sm hidden-xs">
+	      <label>|</label>
+	    </div>
+	    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-10 paddingLeftOverride pull-right">
+	      <div class="select_style rounded divMinWidth110">
+	        <select ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+	                ng-change="vm.changedQuarterValue(vm.quarter)">
+	          <!-- <option value="">Select</option> -->
+	        </select>
+	        <span></span>
+	      </div>
+	    </div>
+	  </div>
+</div>
+  <!-- <div class="col-xs-12 visible-xs">
+    <div class="col-xs-12 divHeight56">
+      <div class="col-xs-12">
+        <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize"
+                    items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPage"
+                    ng-change="vm.changePage()" class="pagination-sm pull-right" previous-text="&lsaquo;"
+                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+      </div>
+    </div>
+    <div class="col-xs-12 paddingLeftOverride pull-left">
+      <div class="select_style rounded divMinWidth110 pull-left">
+        <select class="pull-left" ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+                ng-change="vm.changedQuarterValue(vm.quarter)">
+          <option value="">Select</option>
+        </select>
+        <span></span>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="col-xs-12 marginTop40 paddingOverride">
+<div>
+  <table class="table table-provide-feedback fontCiscoSansTT fontSize14 table-striped">
+    <thead class='backgroundColorFFFFFF'>
+      <tr class="fontSize14 fontCiscoSansTTBold hidden-xs hidden-sm visible-md visible-lg backgroundColorFFFFFFOverride">
+
+        <th class="{{vm.reverse1}} position-relative"
+            ng-click='vm.reverse1=!vm.reverse1;vm.reverse2="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("firstname", vm.reverse1);$event.stopPropagation();'>
+          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_TEAM_MEMBER"></div>
+          <div class="heading1"></div>
+        </th>
+        <th class="{{vm.reverse2}} position-relative"
+            ng-click='vm.reverse2=!vm.reverse2;vm.reverse1="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("requested", vm.reverse2);$event.stopPropagation();'>
+          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_REQUESTED"></div>
+          <div class="heading1"></div>
+        </th>
+        <th class="{{vm.reverse3}} position-relative"
+            ng-click='vm.reverse3=!vm.reverse3;vm.reverse1="";vm.reverse2="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("recieved", vm.reverse3);$event.stopPropagation();'>
+          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_RECEIVED"></div>
+          <div class="heading1"></div>
+        </th>
+        <th class="{{vm.reverse4}} position-relative"
+            ng-click='vm.reverse4=!vm.reverse4;vm.reverse1="";vm.reverse2="";vm.reverse3="";vm.reverse5=""; vm.sortColumn("notshared", vm.reverse4);$event.stopPropagation();'>
+          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_NOT_SHARED"></div>
+          <div class="heading1"></div>
+        </th>
+        <th class="{{vm.reverse5}} position-relative"
+            ng-click='vm.reverse5=!vm.reverse5;vm.reverse1="";vm.reverse2="";vm.reverse3="";vm.reverse5=""; vm.sortColumn("declined", vm.reverse4);$event.stopPropagation();'>
+          <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_DECLINED"></div>
+          <div class="heading1"></div>
+        </th>
+        <th translate="FEEDBACK.TABLE_ACTION">
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- commented below code because we dont need filter in team page -->
+      <!-- <tr class="hidden-xs hidden-sm visible-md visible-lg">
+        <td>
+          <div class="form-group has-feedback marginBottomOverride">
+                <input typeahead-wait-ms="300" typeahead-on-select="vm.activateAfterSearch($item, $model, $label)" typeahead-append-to-body="true" type="text" ng-model="vm.searchTeamMember" placeholder="Search" typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control fontCiscoSansTTLight fontSize14 padding13 borderRadius30">
+                <i class="fa fa-search form-control-feedback lineHeight16px"></i>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+        </td>
+        <td> <a href="" class="fontColor39a5e3 fontSize14 fontCiscoSansTT" ng-click="vm.clearFilters()" translate="FEEDBACK.TABLE_CLEAR_FILTER"></a> </td>
+      </tr> -->
+      <!-- <tr class="visible-xs visible-sm hidden-md hidden-lg">
+        <td class="col-xs-12" colspan="6">
+          <div class="row">
+            <div class="col-xs-12 fullWidth">
+                <div class="col-xs-12 marginTop10">
+                <label translate="FEEDBACK.TABLE_TEAM_MEMBER"></label>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group has-feedback marginBottomOverride">
+                    <input typeahead-wait-ms="300" typeahead-on-select="vm.activateAfterSearch($item, $model, $label)" typeahead-append-to-body="true" type="text" ng-model="vm.searchTeamMember" placeholder="Search" typeahead="address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control fontCiscoSansTTLight fontSize14 padding13 borderRadius30">
+                    <i class="fa fa-search form-control-feedback lineHeight16px"></i>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <a class="fontColor39a5e3 fontSize14 fontCiscoSansTT pull-right marginTop10" translate="FEEDBACK.TABLE_CLEAR_FILTER"></a>
+                </div>
+            </div>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> -->
+      <tr ng-repeat="data in vm.reqrecFeedbackTeamList.content[0].DirectTeam" class="hidden-xs hidden-sm visible-md visible-lg">
+        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT"><a class='pointer' ng-click='vm.viewAllUserFeedback(data.Username)'>{{::data.firstname}} {{::data.lastname}}</a></td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'requested', {{vm.getRequestedCount(data)}});">
+          {{vm.getRequestedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'received', {{vm.getReceivedCount(data)}});">
+          {{vm.getReceivedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'notshared', {{vm.getNotSharedCount(data)}});">
+          {{vm.getNotSharedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'declined', {{vm.getDeclinedCount(data)}});">
+          {{vm.getDeclinedCount(data)}}
+        </td>
+        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT">
+            <a href="" class="marginRight5 fontColor39a5e3" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'viewAll', {{vm.getDeclinedCount(data) + vm.getNotSharedCount(data) + vm.getReceivedCount(data) + vm.getRequestedCount(data)}});" translate="FEEDBACK.TABLE_VIEW_ALL"></a>
+        </td>
+      </tr>
+      <tr ng-show="vm.isProvideFeedbacksLoading">
+        <td colspan="6" class="textAlignCenter"><label><ajax-loader type="small"></ajax-loader>Loading Feedbacks Data... Please wait.</label></td>
+        <!-- <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> -->
+      </tr>
+      <tr ng-repeat="data in vm.reqrecFeedbackTeamList.content[0].DirectTeam" class="visible-xs visible-sm hidden-md hidden-lg">
+        <td colspan="6">
+          <div class="row">
+            <div class="col-xs-12 paddingOverride">
+              <div class="col-xs-12 paddingOverride">
+                <label class="fontSize14 fontCiscoSansTT fontColor39a5e3"><a class='pointer' ng-click='vm.viewAllUserFeedback(data.Username)'>{{::data.firstname}} {{::data.lastname}}</a></label>
+              </div>
+              <div class="col-xs-12 paddingOverride">
+                <div class="row marginTop10">
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackYetToProvide">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getRequestedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_REQUESTED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackProvided">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getReceivedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_RECEIVED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackDeclined">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getNotSharedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_NOT_SHARED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackDeclined">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getDeclinedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_DECLINED"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 fontColor39a5e3 fontSize14 fontCiscoSansTT">
+                <a href="" class="marginRight5 fontColor39a5e3 pull-right" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'viewAll', {{vm.getDeclinedCount(data) + vm.getNotSharedCount(data) + vm.getReceivedCount(data) + vm.getRequestedCount(data)}});" translate="FEEDBACK.TABLE_VIEW_ALL"></a>
+              </div>
+            </div>
+          </div>
+        </td>
+        <!-- <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> -->
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT">
+          <div class="row" ng-show="vm.reqrecFeedbackTeamList.content[0].AlternateTeam.length > 0">
+            <div class="col-xs-12">
+          <a href="" class="marginRight5 fontColor39a5e3 fontSize14 fontCiscoSansTT pull-right" ng-click="vm.showAlternateTeam();" translate="FEEDBACK.TABLE_VIEW_ALTERNATE_TEAM" ng-show="!vm.showAlternateTeamFlag"></a>
+          <a href="" class="marginRight5 fontColor39a5e3 fontSize14 fontCiscoSansTT pull-right" ng-click="vm.hideAlternateTeam();" translate="FEEDBACK.TABLE_HIDE_ALTERNATE_TEAM" ng-show="vm.showAlternateTeamFlag"></a>
+          </div>
+          </div>
+        </td>
+      </tr>
+      <tr ng-repeat="data in vm.reqrecFeedbackTeamList.content[0].AlternateTeam" class="hidden-xs hidden-sm visible-md visible-lg" ng-show="vm.showAlternateTeamFlag">
+        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT">{{::data.firstname}} {{::data.lastname}}</td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'requested', {{vm.getRequestedCount(data)}});">
+          {{vm.getRequestedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'received', {{vm.getReceivedCount(data)}});">
+          {{vm.getReceivedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'notshared', {{vm.getNotSharedCount(data)}});">
+          {{vm.getNotSharedCount(data)}}
+        </td>
+        <td class="fontColor222222 fontSize14 fontCiscoSansTT feedbackCountCell" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'declined', {{vm.getDeclinedCount(data)}});">
+          {{vm.getDeclinedCount(data)}}
+        </td>
+        <td class="fontColor39a5e3 fontSize14 fontCiscoSansTT">
+            <a href="" class="marginRight5 fontColor39a5e3" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'viewAll', {{vm.getDeclinedCount(data) + vm.getNotSharedCount(data) + vm.getReceivedCount(data) + vm.getRequestedCount(data)}});" translate="FEEDBACK.TABLE_VIEW_ALL"></a>
+        </td>
+      </tr>
+      <tr ng-repeat="data in vm.reqrecFeedbackTeamList.content[0].AlternateTeam" class="visible-xs visible-sm hidden-md hidden-lg" ng-show="vm.showAlternateTeamFlag">
+        <td colspan="6">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="col-xs-12">
+                <label class="fontSize14 fontCiscoSansTT fontColor39a5e3">{{::data.firstname}} {{::data.lastname}}</label>
+              </div>
+              <div class="col-xs-12">
+                <div class="row marginTop10">
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackYetToProvide">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getRequestedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_REQUESTED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackProvided">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getReceivedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_RECEIVED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackDeclined">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getNotSharedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_NOT_SHARED"></label>
+                  </div>
+                  <div class="col-xs-3 textAlignCenter">
+                    <div class="overviewFeedbackCount feedbackDeclined">
+                      <label class="fontCiscoSansTTLight lineHeight70">{{vm.getDeclinedCount(data)}}</label>
+                    </div>
+                    <label class="fontSize14 fontCiscoSansTT fontColor222222 marginTop10" translate="FEEDBACK.TABLE_DECLINED"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 fontColor39a5e3 fontSize14 fontCiscoSansTT">
+                <a href="" class="marginRight5 fontColor39a5e3 pull-right" ng-click="vm.loadReceivedFeedbackForTeamMember(data, 'viewAll', {{vm.getDeclinedCount(data) + vm.getNotSharedCount(data) + vm.getReceivedCount(data) + vm.getRequestedCount(data)}});" translate="FEEDBACK.TABLE_VIEW_ALL"></a>
+              </div>
+            </div>
+          </div>
+        </td>
+        <!-- <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

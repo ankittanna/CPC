@@ -1,0 +1,307 @@
+<!-- Dashboard -->
+<!-- Dashboard -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="pull-left displayTableRow">
+      <span id="provideFeedbackTab" class="provide active">TEAM TIMELINE</span>
+      <span id="requestRecieveTab" class="reqrec" ng-click="vm.timelineTeamSecondNavigate()">ALTERNATE TEAM TIMELINE</span>
+    </div>
+  </div>
+</div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-lg-6 col-md-6 padding-side-0 visible-lg visible-md hidden-sm hidden-xs"></div>
+<div class="pull-right col-lg-6 col-md-6 col-sm-12 col-xs-12 padding-side-0">
+  <div class="col-sm-8 divHeight56 padding-side-0 visible-lg visible-md hidden-sm hidden-xs">
+    <div class="col-xs-12 padding-side-0">
+      <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize"
+                  items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPage"
+                  ng-change="vm.changePage()" class="pagination-sm pull-right" previous-text="&lsaquo;"
+                  next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+  </div>
+  <div class="col-xs-1 visible-lg visible-md hidden-sm hidden-xs">
+    <label>|</label>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-2 col-xs-5 paddingLeftOverride pull-right">
+    <div class="select_style rounded divMinWidth110">
+      <select ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters"
+              ng-change="vm.changedQuarterValue(vm.quarter)">
+        <option value="">Select</option>
+      </select>
+      <span></span>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+<cpc-timeline-filter></cpc-timeline-filter>
+<div class="clearfix"></div>
+<div class="clearfix">&nbsp;</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+  <div ng-show="!vm.response" class="fontSize14 fontCiscoSansTT col-xs-12">
+    <div ng-show="vm.loading">
+      <ajax-loader type="small"></ajax-loader>
+    </div>
+    <div class="col-xs-12" ng-show="!vm.loading" translate="No preview data available in timeline"></div>
+  </div>
+  <div ng-repeat="value in vm.response">
+    <div id ="conversationContainer" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padTop20" ng-class-odd=" 'odd' " ng-class-even=" 'even' ">
+
+      <div class="clearfix visible-lg visible-md hidden-sm hidden-xs">&nbsp;</div>
+      <span id="sync-round-img1" class="col-md-1 col-sm-2 col-xs-4 hidden-lg">
+        <img ng-src="{{value.image}}">
+      </span>
+      <span id="date-time-span" class="col-xs-6 col-sm-6 col-md-2 col-lg-2 light fontSize16 fontColor333439">
+              <strong>{{value.date | dateInPST}}</strong>
+            <span class="bold light fontSize14 fontColor333439" style="display: block;">
+              {{value.date | timeInPST}}
+            </span>
+        </span>
+      <span id="sync-round-img" class="col-lg-1 hidden-md hidden-sm hidden-xs">
+        <img ng-src="{{value.image}}">
+      </span>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9 light fontSize14 fontColor333439" id="conversationContent">
+
+        <div ng-switch="value.status">
+          <div ng-switch-when="CreateConversation-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateConversation-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateConversation-EMP_SUBMIT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateConversation-EMP_SUBMIT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.WITH"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateConversation-MGR_SUBMIT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateConversation-MGR_SUBMIT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.WITH"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="UpdateConversation-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.UpdateConversation-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="UpdateConversation-EMP_SUBMIT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.UpdateConversation-EMP_SUBMIT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.WITH"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="UpdateConversation-MGR_SUBMIT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.UpdateConversation-MGR_SUBMIT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.WITH"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <!--start below-->
+          <div ng-switch-when="UpdateConversation-CLOSE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.UpdateConversation-CLOSE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="Conversation-Delete" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.Conversation-Delete' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.WITH"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateRequestFeedback-PENDING" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateRequestFeedback-PENDING' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.FROM"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateUnRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateUnRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="CreateUnRequestFeedback-COMPLETE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.CreateUnRequestFeedback-COMPLETE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-PENDING" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-PENDING' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-FORWARD" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-FORWARD' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-NOTSHARE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-NOTSHARE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-COMPLETE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-COMPLETE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseUnRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseUnRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseUnRequestFeedback-COMPLETE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseUnRequestFeedback-COMPLETE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="FeedbackReminderSent" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.FeedbackReminderSent' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="DirectTeam-CreateRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.DirectTeam-CreateRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>\
+          </div>
+
+          <div ng-switch-when="DirectTeam-CreateRequestFeedback-PENDING" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.DirectTeam-CreateRequestFeedback-PENDING' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.FROM"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="DirectTeam-CreateUnRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.DirectTeam-CreateUnRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="DirectTeam-CreateUnRequestFeedback-COMPLETE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.DirectTeam-CreateUnRequestFeedback-COMPLETE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="Manager-CreateRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.Manager-CreateRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="Manager-CreateRequestFeedback-PENDING" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.Manager-CreateRequestFeedback-PENDING' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.FROM"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="Manager-CreateUnRequestFeedback-DRAFT" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.Manager-CreateUnRequestFeedback-DRAFT' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+          </div>
+
+          <div ng-switch-when="Manager-CreateUnRequestFeedback-COMPLETE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.Manager-CreateUnRequestFeedback-COMPLETE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.TO"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+          <div ng-switch-when="ResponseRequestFeedback-DECLINE" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottomPad20" id="heading">
+            <span class="bold"><strong>{{::value.from}}</strong></span>
+            <span>{{'TIMELINE.ResponseRequestFeedback-DECLINE' | translate}}</span>
+            <span class="bold"><strong>{{::value.title}}</strong></span>
+            <span translate="TIMELINE.FROM"></span>
+            <span class="bold"><strong>{{::value.to}}</strong></span>
+          </div>
+
+
+          <div ng-bind-html="value.description | limitTo : 150" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="content"></div>
+          <label ng-click="vm.viewDetail(value, value.status)" ng-show="value.description.length > 150" class="fontCiscoSansTT fontSize14 fontColor0096d5 pull-right pointer ng-scope">
+            <span>View More</span>
+          </label>
+
+          <div ng-show="value.attachments" class="col-xs-12 col-md-12 col-sm-12 col-lg-12 padding-side-0">
+            <label ng-repeat="(key, value) in value.attachments" class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10">
+              <a href="/performance/api/feedback/getAttachment/{{::key}}" target="_blank">{{::value}}</a>
+            </label>
+          </div>
+
+          <div class="clearfix">&nbsp;</div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 padding-side-0">
+            {{vm.value}}
+            <div ng-repeat="(key, value) in value.tags" style="display: inline;">
+              <span class="btn btn-default btn-sm"> {{::value}}</span>
+            </div>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 paddingTop10 hidden-lg hidden-md visible-sm visible-xs">
+  <button ng-show="vm.showLoadMore" ng-click="vm.getMoreConversations()" class="viewAllSyncUpConversationsButton fontWeightBold marginBottom5 pull-right" translate="HOME.LOAD_MORE"></button>
+</div>

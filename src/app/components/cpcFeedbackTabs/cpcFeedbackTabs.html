@@ -1,0 +1,10 @@
+<div class="container-fluid" ng-show="vm.shouldTabsContentBeShown">
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="pull-left displayTableRow">
+            <span id="provideFeedbackTab" class="provide active" translate="MAIN_HEADER_NAV.PROVIDE_FEEDBACK" ng-click="vm.toggleFeedbackTabs('provide');" ng-show="vm.shouldProvideFeedbackTabBeShown"><a ui-sref="feedback.provide" translate="FEEDBACK.TABLE_PROVIDE_TABLE"></a></span>
+            <span id="requestRecieveTab" class="reqrec" translate="MAIN_HEADER_NAV.REQ_REC_FEEDBACK" ng-click="vm.toggleFeedbackTabs('reqrec');"><a ui-sref="feedback.recieve" translate="FEEDBACK.TABLE_REQUEST_TABLE"></a></span>
+          </div>
+      </div>
+    </div>
+</div>

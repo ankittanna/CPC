@@ -1,0 +1,266 @@
+<div class="container-fluid">
+    
+    <div class="row feedbackObject" ng-show="vm.isProviderSectionVisible">
+            <div class="row">
+              <div class="marginTop20 col-xs-12">
+                    <div class="displayInlineBlock floatLeft">
+                        <div class="img-circle img-responsive profilePhotoSmall">
+                        <img class="marginRight5 img-circle" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackProvider}}.jpg"/>
+                        </div>
+                    </div>
+                    <div class="displayInlineBlock floatLeft">
+                        <p class="fontSize18 fontCiscoSansTT fontColor0096d5 marginOverride">{{vm.feedbackProviderFullName}}</p>
+                        <p class="fontSize14 fontCiscoSansTT fontColor222222 marginOverride">{{vm.feedhackReceivedOnDate}}, {{vm.feedhackReceivedOnTime}}</p>
+                    </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1"></div>
+                <div class="col-xs-11">
+                    <div class="borderTopColor93C85E conversation-box auto-cursor col-xs-12 padding10 paddingTopOverride marginBottom50">
+                <div class="col-xs-12">
+                    <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label>
+                </div>
+                <div class="col-xs-12">
+                    <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.feedbackTitle}}</label>
+                </div>
+                <div class="row">
+          <div class="col-xs-12">
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ABOUT"></label>
+          </div>
+          <div class="col-xs-12" ng-show="!vm.currentFeedbackObject.feedbackAboutList.length">
+            <div class="displayInlineBlock floatLeft">
+              <div class="img-circle img-responsive profilePhotoSmall">
+                            <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentFeedbackObject.feedbackAbout}}.jpg"/>
+                        </div>
+            </div>
+            <div class='displayInlineBlock floatLeft'>
+              <label class="fontSize14 fontCiscoSansTT fontColor0096d5 floatLeft">{{vm.feedbackAboutFullName}}</label>
+            </div>
+          </div>
+          <div class="col-xs-12" ng-show="vm.currentFeedbackObject.feedbackAboutList.length">
+            <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.currentFeedbackObject.feedbackAboutList}}</label>
+          </div>
+
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_PROVIDER"></label>
+          </div>
+          <div class="col-xs-12" ng-show="!vm.currentFeedbackObject.feedbackAboutList.length">
+            <div class="displayInlineBlock floatLeft">
+              <div class="img-circle img-responsive profilePhotoSmall">
+                            <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentFeedbackObject.provider}}.jpg"/>
+                        </div>
+            </div>
+            <div class='displayInlineBlock floatLeft'>
+              <label class="fontSize14 fontCiscoSansTT fontColor0096d5">{{vm.feedbackProviderFullName}}</label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+                <div class="col-xs-12 marginTop20">
+                    <label class="fontSize14 fontCiscoSansTTBold fontColor222222" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label>
+                </div>
+                <div class="col-xs-12">
+                    <!--<p class="fontSize14 fontCiscoSansTTLight fontColor222222">
+                        {{vm.feedbackResponse}}
+                    </p> -->
+                    <div class="fontSize14 fontCiscoSansTTLight fontColor222222 feedbackDetails" ng-bind-html="vm.feedbackResponse | sanitize"></div>
+                </div>
+            <div class="row" ng-show="vm.isFeedbackResponseAttachmentVisible(vm.currentFeedbackObject, 'response')">
+              <div class="col-xs-12">
+            <div class="col-xs-12 marginTop20">
+              <label class="fontSize16 fontWeightBold" ng-show="vm.isFeedbackResponseAttachmentVisible(vm.currentFeedbackObject, 'response')" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ATTACHMENT"></label>
+            </div>
+                <div class="col-xs-12">
+                    <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10" ng-repeat="(key, val) in vm.currentFeedbackObject.response_attachment_id">
+                    <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  </label>
+                </div>
+            </div>
+            </div>
+            <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div ng-switch on="vm.feedbackViewMode">
+                    <div class="row" ng-switch-when="delete">
+                      <div class='col-xs-12 borderTop7B7B7B'></div>
+                      <div class="col-xs-12">
+                        <button class="addCCButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_DELETE_FEEDBACK" ng-click="vm.deleteFeedback(vm.feedbackId)"></button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+              </div>    
+                </div>
+            </div>
+        </div>
+
+
+    <div class="row feedbackObject" ng-show="vm.isReminderSectionVisible" ng-repeat="reminder in vm.feedbackReminderListUpdated">
+        <div class="row">
+          <div class="marginTop20 col-xs-12">
+             	<div class="displayInlineBlock floatLeft">
+                    <div class="img-circle img-responsive profilePhotoSmall">
+                    <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackRequestedBy}}.jpg"/>
+                    </div>
+                </div>
+                <div class="displayInlineBlock floatLeft">
+                    <p class="fontSize18 fontCiscoSansTT fontColor0096d5 marginOverride">{{vm.feedbackRequestedByFullName}}</p>
+                    <p class="fontSize14 fontCiscoSansTT fontColor222222 marginOverride">{{reminder.sendReminderDate}}, {{reminder.sendReminderTime}}</p>
+                </div>
+          </div>
+     	</div>
+        
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-11">
+                <div class="borderTopColor93C85E reminderSentBox col-xs-12 padding10 paddingTopOverride marginBottom50">
+            <div class="col-xs-12">
+                <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="FEEDBACK.REMINDER_SENT">Reminder Sent</label>
+            </div>
+            
+          </div>    
+            </div>
+        </div>
+    </div>
+
+    <div class="row feedbackObject" ng-show="vm.isRequestorSectionVisible">
+            <div class="row">
+              <div class="marginTop20 col-xs-12">
+                    <div class="displayInlineBlock floatLeft">
+                        <div class="img-circle img-responsive profilePhotoSmall">
+                            <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.feedbackRequestedBy}}.jpg"/>
+                        </div>
+                    </div>
+                    <div class="displayInlineBlock floatLeft">
+                        <p class="fontSize18 fontCiscoSansTT fontColor0096d5 marginOverride">{{vm.feedbackRequestedByFullName}}</p>
+                        <p class="fontSize14 fontCiscoSansTT fontColor222222 marginOverride">{{vm.feedhackRequestedOnDate}}, {{vm.feedhackRequestedOnTime}}</p>
+                    </div>
+              </div>
+            </div>
+
+    <div class="row">
+      <div class="col-xs-1"></div>
+      <div class="col-xs-11">
+        <div class="borderTopColor93C85E conversation-box col-xs-12 padding10 paddingTopOverride marginBottom50">
+          <!--<div class="col-xs-12 fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" ng-show="{{vm.isFeedbackTypeMultipleRequest}}">
+            For {{vm.feedbackMultipleUserCount}} users...
+          </div> -->
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label>
+          </div>
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.feedbackTitle}}</label>
+          </div>
+          <div class="row">
+          <div class="col-xs-12">
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ABOUT"></label>
+          </div>
+          <div class="col-xs-12" ng-show="!vm.currentFeedbackObject.feedbackAboutList.length">
+            <div class="displayInlineBlock floatLeft">
+              <div class="img-circle img-responsive profilePhotoSmall">
+                            <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentFeedbackObject.feedbackAbout}}.jpg"/>
+                        </div>
+            </div>
+            <div class='displayInlineBlock floatLeft'>
+              <label class="fontSize14 fontCiscoSansTT fontColor0096d5 floatLeft">{{vm.feedbackAboutFullName}}</label>
+            </div>
+
+          </div>
+          <div class="col-xs-12" ng-show="vm.currentFeedbackObject.feedbackAboutList.length">
+            <label class="fontSize14 fontCiscoSansTTLight fontColor222222">{{vm.currentFeedbackObject.feedbackAboutList}}</label>
+          </div>
+
+          <div class="col-xs-12">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222 marginTop10" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_PROVIDER"></label>
+          </div>
+          <div class="col-xs-12" ng-show="!vm.currentFeedbackObject.feedbackAboutList.length">
+            <div class="displayInlineBlock floatLeft">
+              <div class="img-circle img-responsive profilePhotoSmall">
+                            <img class="marginRight5 img-responsive" src="http://wwwin.cisco.com/dir/photo/std/{{vm.currentFeedbackObject.provider}}.jpg"/>
+                        </div>
+            </div>
+            <div class='displayInlineBlock floatLeft'>
+              <label class="fontSize14 fontCiscoSansTT fontColor0096d5 floatLeft displayInlineBlock">{{vm.feedbackProviderFullName}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+          <div class="col-xs-12 marginTop20">
+            <label class="fontSize14 fontCiscoSansTTBold fontColor222222" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label>
+          </div>
+          <div class="col-xs-12">
+            <!--<p class="fontSize14 fontCiscoSansTTLight fontColor222222">
+              {{vm.feedbackDescription}}
+            </p> -->
+            <div class="fontSize14 fontCiscoSansTTLight fontColor222222 feedbackDetails" ng-bind-html="vm.feedbackDescription | sanitize"></div>
+          </div>
+          <!--<div class="col-xs-12">
+              <div class="row">
+                  <div class="col-xs-2 backgroundColorFFFFFF">
+                      <img src="../../../client/assets/images/karma.png">
+                  </div>
+                  <div class="col-xs-2 backgroundColorFFFFFF">
+                      <img src="../../../client/assets/images/karma.png">
+                  </div>
+              </div>
+          </div>-->
+          <div class="row" ng-show="vm.isFeedbackRequestAttachmentVisible(vm.currentFeedbackObject, 'request')">
+            <div class="col-xs-12">
+            <div class="col-xs-12 marginTop20">
+              <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_ATTACHMENT"></label>
+            </div>
+            <div class="col-xs-12">
+              <label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10" ng-repeat="(key, val) in vm.currentFeedbackObject.attachment_id" >
+                <a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  </label>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12" ng-switch on="vm.feedbackViewMode">
+            <div class="row" ng-switch-when="decline">
+              <div class='col-xs-12 borderTop7B7B7B'></div>
+              <div class="col-xs-12">
+                <button class="addCCButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_DECLINE" ng-click="vm.declineFeedback(vm.currentFeedbackObject)"></button>
+              </div>
+            </div>
+            <div class="row" ng-switch-when="pending">
+              <div class='col-xs-12 borderTop7B7B7B'></div>
+              <div class="col-xs-12">
+                <button class="shareWithTeamButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_PROVIDE" ng-click="vm.provideFeedback(vm.currentFeedbackObject)"></button>
+              </div>
+            </div>
+            <div class="row" ng-switch-when="reminder">
+              <div class='col-xs-12 borderTop7B7B7B'></div>
+              <div class="col-xs-12">
+                <button class="shareWithTeamButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_SEND_REMINDER" ng-click="vm.sendFeedbackReminder(vm.feedbackId)"></button>
+              </div>
+            </div>
+            <div class="row" ng-switch-when="forward">
+              <div class='col-xs-12 borderTop7B7B7B'></div>
+              <div class="col-xs-12">
+                <button class="shareWithTeamButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_FORWARD_FEEDBACK" ng-click="vm.forwardFeedback(vm.currentFeedbackObject)"></button>
+              </div>
+            </div>
+            <div class="row" ng-switch-when="delete">
+              <div class='col-xs-12 borderTop7B7B7B'></div>
+              <div class="col-xs-12">
+                <button class="addCCButton marginTop20 pull-right" ng-show='vm.isActionButtonVisible' translate="FEEDBACK.BUTTON_DELETE_FEEDBACK" ng-click="vm.deleteFeedback(vm.feedbackId)"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<header class="container-fluid hide-not-screen paddingOverride">
+  <div class="container paddingOverride">
+    <div class="row" style="margin-left:0 !important;margin-right:0 !important">
+      <div class="col-xs-12 paddingOverride">
+
+
+        <a class="menuButton hidden-md hidden-lg" ng-click="vm.mobileMenu()" ><img src="/client/assets/images/burger-menu.png"/></a>
+        <img src="/client/assets/images/cisco-logo.png" class="hidden-xs hidden-sm cursorPointer" ng-click="gotoHome()"/>
+        <span class="heading hidden-xs hidden-sm cursorPointer fontCiscoSansTTLight fontSize24" translate="HEADER.HEADING" ng-click="gotoHome()"></span>
+
+        <div class="pull-right">
+          <span class="dropdown" dropdown on-toggle="toggled(open)">
+          <button class="btn btn-default dropdown-toggle" type="button" aria-expanded="true" dropdown-toggle>
+          &nbsp;<span class="flag-icon flag-icon-{{selectedFlag}}"></span> &nbsp;{{selectedLanguage}}
+          <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="choice in ::vm.items">
+              <a href="#" ng-click="vm.changeLanguage(choice.id)"><span class="flag-icon flag-icon-{{::choice.id}}"></span> &nbsp;{{::choice.value}}</a>
+            </li>
+          </ul>
+          </span>
+
+
+          <span class="fa fa-bell fa-lg" ng-click="vm.onNotification()" id="notificationLink"></span>
+          <span class="badge position-relative">{{vm.notifications.length}}</span>
+
+        </div>
+	 </div>
+	</div>
+	
+	<div class="col-lg-5 col-md-2 col-sm-6 col-xs-11 paddingOverride" id="notificationContainer" collapse="vm.showNotificationDropdown">
+		<div id="notificationsBody" class="notifications" >
+		<div  ng-repeat="notification in vm.notifications" class="col-xs-12 paddingRightOverride" id="notification">
+		  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 paddingOverride img-circle img-responsive profilePhotoSmall" style="height:62px;width:50px;">
+		      <img class="img-responsive" alt="{{vm.userprofile.imageUser}}" src="http://wwwin.cisco.com/dir/photo/std/{{notification.imageUser}}.jpg"/>
+		  </div>
+		  <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 padding4">
+		  	<label style="word-wrap:break-word" class="fontSize14 fontCiscoSansTT">{{notification.Name}}</label>
+		  </div>
+		  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 padding4">
+		  	<label>{{notification.day}}</label>&nbsp;&nbsp;<label>{{notification.hour}}</label>&nbsp;&nbsp;
+		  	<i class="fa fa-close fa-lg pointer" ng-click="vm.goToDeleteNotification({{::notification}})"></i></div>
+		</div>
+		</div>
+		<div id="notificationFooter" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 paddingOverride"><a class="marginRight5 fontSize12 fontCiscoSansTT fontColor39a5e3" ng-click="vm.viewNotification()" translate="FEEDBACK.TABLE_VIEW"></a></div>
+	</div>
+  </div>
+</header>

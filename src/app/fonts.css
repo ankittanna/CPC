@@ -1,0 +1,60 @@
+/*Fonts*/
+/* CiscoSansTT-Regular */
+@font-face {
+  font-family: 'CiscoSansTT';
+  src: url('../client/assets/fonts/CiscoSansTT.eot') format('embedded-opentype'),
+       url('../client/assets/fonts/CiscoSansTT.woff') format('woff'), 
+       url('assets/fonts/CiscoSansTT.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*@font-face {
+  font-family: 'CiscoSansTT';
+  src:  
+  font-weight: normal;
+  font-style: normal;
+}*/
+
+
+/* CiscoSansTT-ExtraLight */
+@font-face {
+  font-family: 'CiscoSansTT-Light';
+  src: url('../client/assets/fonts/CiscoSansTT-ExtraLight.eot') format('embedded-opentype'),
+       url('../client/assets/fonts/CiscoSansTT-ExtraLight.woff') format('woff'), 
+       url('../client/assets/fonts/CiscoSansTT-ExtraLight.ttf')  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/*@font-face {
+  font-family: 'CiscoSansTT-ExtraLight';
+  src:  url() format('woff'), url('../client/assets/fonts/CiscoSansTT-ExtraLight.ttf')  format('truetype'), url('../client/assets/fonts/CiscoSansTT-ExtraLight.svg#CiscoSansTT-ExtraLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}*/
+
+/* CiscoSans-ExtraLight */
+@font-face {
+  font-family: 'CiscoSans-ExtraLight';
+  src: url('../client/assets/fonts/CiscoSans-ExtraLight.eot') format('embedded-opentype'),
+       url('../client/assets/fonts/CiscoSans-ExtraLight.otf')  format('opentype'),
+       url('../client/assets/fonts/CiscoSans-ExtraLight.woff') format('woff'), 
+       url('../client/assets/fonts/CiscoSans-ExtraLight.ttf')  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* CiscoSans-Bold */
+@font-face {
+  font-family: 'CiscoSansTT-Bold';
+  src: url('../client/assets/fonts/CiscoSansTTBold.ttf')  format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+/*@font-face {
+  font-family: 'CiscoSans-ExtraLight';
+  src:  url('../client/assets/fonts/CiscoSans-ExtraLight.otf')  format('opentype'),
+                     url() format('woff'), url('../client/assets/fonts/CiscoSans-ExtraLight.ttf')  format('truetype'), url('../client/assets /fonts/CiscoSans-ExtraLight.svg#CiscoSans-ExtraLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}*/
+/*Fonts*/

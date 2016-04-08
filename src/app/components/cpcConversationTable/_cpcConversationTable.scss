@@ -1,0 +1,98 @@
+/* CSS Document */
+.borderRadius20
+{
+	border-radius: 20px;
+}
+
+.borderColorNone
+{
+	border-color: #FFFFFF;
+}
+
+.backgroundColorWhite
+{
+	background-color: #FFFFFF;
+}
+
+.marginBottomOverride
+{
+	margin-bottom: 0px !important;
+}
+
+.conversationTable tr:first-child
+{
+	border-top: 1px solid #C4C7CC;
+	min-height: 40px;
+}
+
+.conversationTable tr
+{
+	border-top: 1px solid #C4C7CC;
+	min-height: 40px;
+}
+
+.conversationTable tr td
+{
+	vertical-align:central;
+	padding: 12px;
+}
+
+.verticalAlignTop
+{
+	vertical-align:top;
+}
+
+.floatRight
+{
+	text-align:right;
+}
+
+/* select box styling */
+.select_style 
+{
+	background: #FFF;
+	overflow: hidden;
+	display: inline-block;
+	color: #525252;
+	font-weight: 300;
+	width:100%;
+	-webkit-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	-moz-border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	border-radius: 5px 4px 4px 5px/5px 5px 4px 4px;
+	-webkit-box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
+	-moz-box-shadow: 0 0 5px rgba(123,123,123,.2);
+	box-shadow: 0 0 5px rgba(123, 123, 123, 0.2);
+	border: solid 1px #DADADA;
+	position: relative;
+	cursor: pointer;
+	font-size:14px;
+}
+
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.select_style span
+{
+	position: absolute;
+	right: 10px;
+	width: 8px;
+	height: 8px;
+	background: url(/client/assets/images/arrow.png) no-repeat;
+	top: 50%;
+	margin-top: -4px;
+}
+.select_style select
+{
+	-webkit-appearance: none;
+	appearance:none;
+	width:120%;
+	background:none;
+	background:transparent;
+	border:none;
+	outline:none;
+	cursor:pointer;
+	padding:7px 10px;
+}

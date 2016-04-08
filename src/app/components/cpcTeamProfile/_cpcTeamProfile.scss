@@ -1,0 +1,187 @@
+/* Responsive Tab Code */
+
+ul#profilePageTab.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 37px;
+	border-bottom: 1px solid #DADADA;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+ul#profilePageTab.tabs li {
+	float: left;
+	margin: 0;
+	cursor: pointer;
+	padding: 0px 10px;
+	height: 37px;
+	line-height: 37px;
+	background-color: #FFFFFF;
+	color: #646871;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #FFFFFF;
+	border-bottom: 1px solid #DADADA;
+	font-family: CiscoSansTT;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.tab_last { }
+
+ul#profilePageTab.tabs li:hover {
+	background-color: #0086c0;
+	color: #FFFFFF;
+	font-family: CiscoSansTT;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+ul#profilePageTab.tabs li.active {
+	background-color: #fff;
+	color: #0096d5;
+	font-family: CiscoSansTT;
+	font-weight: bold;
+	font-size: 14px;
+	display: block;
+	border-bottom: 3px solid #0096d5;
+}
+
+.tab_container {
+	border: 1px solid #FFFFFF;
+	border-top: none;
+	clear: both;
+	float: left;
+	background: #fff;
+	padding: 20px;
+}
+
+.tab_content {
+	display: none;
+}
+
+.tab_drawer_heading { display: none; }
+
+@media screen and (max-width: 767px) {
+	.tabs {
+		display: none;
+	}
+	.tab_drawer_heading {
+		font-size: 14px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		background-color: #e8eae9;
+		color: #3F3F3F;
+		border: 1px solid #FFFFFF;
+		margin: 0;
+		padding: 15px 10px;
+		display: block;
+		cursor: pointer;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.tab_drawer_heading:hover {
+		background-color: #0086c0;
+		color: #fff;
+
+	}
+
+	.d_active {
+		background-color: #0086c0;
+		color: #FFFFFF;
+		border-top:2px solid #e8eae9;
+		border-bottom:2px solid #e8eae9;
+	}
+}
+
+.syncUpConversationsButton {
+  background: #7CBC59;
+  background-image: -webkit-linear-gradient(top, #7CBC59, #7CBC59);
+  background-image: -moz-linear-gradient(top, #7CBC59, #7CBC59);
+  background-image: -ms-linear-gradient(top, #7CBC59, #7CBC59);
+  background-image: -o-linear-gradient(top, #7CBC59, #7CBC59);
+  background-image: linear-gradient(to bottom, #7CBC59, #7CBC59);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: CiscoSansTT;
+  color: #646871;
+  font-size: 14px;
+  padding: 7px 15px 7px 15px;
+  border: solid #7CBC59 1px;
+  text-decoration: none;
+}
+
+.syncUpConversationsButton:hover {
+  background: #acc938;
+  background-image: -webkit-linear-gradient(top, #acc938, #acc938);
+  background-image: -moz-linear-gradient(top, #acc938, #acc938);
+  background-image: -ms-linear-gradient(top, #acc938, #acc938);
+  background-image: -o-linear-gradient(top, #acc938, #acc938);
+  background-image: linear-gradient(to bottom, #acc938, #acc938);
+  text-decoration: none;
+}
+
+thead tr th:hover {
+  cursor: pointer;
+}
+
+.heading1:after,
+.heading2:after,
+.heading3:after,
+.heading4:after,
+.heading5:after {
+  position: absolute;
+  font-family: FontAwesome;
+  bottom: 5px;
+  right: 5px;
+  content: "\f0dc";
+  color: #222;
+  font-size: 18px;
+}
+
+.true .heading1:after,
+.true .heading2:after,
+.true .heading3:after,
+.true .heading4:after,
+.true .heading5:after {
+  position: absolute;
+  font-family: FontAwesome;
+  bottom: 5px;
+  right: 5px;
+  content: "\f0dd";
+  color: #222;
+  font-size: 18px;
+}
+
+.false .heading1:after,
+.false .heading2:after,
+.false .heading3:after,
+.false .heading4:after,
+.false .heading5:after {
+  position: absolute;
+  font-family: FontAwesome;
+  bottom: 5px;
+  right: 5px;
+  content: "\f0de";
+  color: #222;
+  font-size: 18px;
+}
+
+div .pagination {
+  margin: 0;
+  li.disabled a:hover {
+    cursor: not-allowed !important;
+  }
+}
+
+i.form-control-feedback {
+  top: 5px !important;
+}

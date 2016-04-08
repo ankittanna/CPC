@@ -1,0 +1,287 @@
+<script type="text/ng-template" id="myPopoverTemplate.html">
+  <div class="modal-header borderOverride col-xs-12">
+    <div class="col-xs-11">
+      <ajax-loader type="small" ng-style="{position:'absolute',left:'44%',top:'30%'}" ng-show="vm.loaderPopup"></ajax-loader>
+      <label class="modal-title fontCiscoSansTTLight fontSize20 marginLeft10 marginTop5" ng-hide="vm.loaderPopup"><a ui-sref="teammemberhome({username:reportee.username})" ui-sref-opts="{reload: true}">{{reportee.firstName}}&nbsp{{reportee.lastName}}({{reportee.username}})</a></label>
+      <br>
+      <label class="modal-title fontCiscoSansTTLight fontSize18 marginLeft10" ng-hide="vm.loaderPopup">{{reportee.departmentName}}</label>
+    </div>
+    <div>
+      <div class="col-xs-1">
+        <span class="fa fa-times pull-right fontSize20 pointer" ng-click="vm.closePopover()"></span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <tabset ng-init="vm.activateTab(1)">
+      <tab heading="Sync Up Conversations" class='fontSize14' ng-click="vm.activateTab(1)">
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+          <div class="col-xs-5">
+            <button class="syncUpConversationsButton fontColor676a72 fontCiscoSansTTBold fontSize14" ng-show="!vm.isFromDrillDown" ng-click="vm.createNewSyncUpConversation()" translate="HOME.SYNC_ADD_BTN"></button>
+          </div>
+          <div class="col-xs-7">
+            <div class="col-xs-9">
+              <div class="col-xs-12 padding-side-0">
+                <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize" items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPageConv" ng-change="vm.changePageConv()" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+              </div>
+            </div>
+            <div class="col-xs-3 padding-top-2 padding-side-0">
+			<div class="select_style rounded divMinWidth110">
+              <select ng-model="vm.quarterConv" ng-options="quarter.id as quarter.display for quarter in vm.quarters" ng-change="vm.changedQuarterValueConv(vm.quarterConv)"></select>
+				<span></span>
+			</div>
+            </div>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div class="col-xs-12 borderBottomF4F4F4"></div>
+        </div>
+        <div class="col-xs-12 paddingOverride">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>
+                  <div class="heading0"></div>
+                </th>
+                <th class="{{vm.reverse1}} position-relative"
+					ng-click='vm.reverse1=!vm.reverse1;vm.reverse2="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn_conv("topicTitle", vm.reverse1)'>
+					<div class="borderRightSeparator fontSize14" translate="HOME.SYNC_TITLE">Title</div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="position-relative {{vm.reverse2}}" ng-click='vm.reverse2=!vm.reverse2;vm.reverse1="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn_conv("ownerUsername", vm.reverse2)'>
+					<div class="borderRightSeparator fontSize14" translate="HOME.SYNC_CREATED">Created by</div>
+                  <div class="heading2"></div>
+                </th>
+                <th class="position-relative">
+					<div class="borderRightSeparator fontSize14" translate="HOME.SYNC_TAGS">Tags</div>
+                </th>
+                <th class="position-relative">
+					<div class="borderRightSeparator fontSize14" translate="HOME.SYNC_ACTION">Action</div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-show="!vm.response" class="fontSize14 fontCiscoSansTT">
+                <td colspan="5" ng-show="vm.loading">
+                  <ajax-loader type="small"></ajax-loader>Loading Conversations...
+                </td>
+                <td colspan="5" ng-show="!vm.loading" translate="SYNCUP_CONVERSATION_DETAILS.NO_CONVERSATION_MSG"></td>
+              </tr>
+              <tr ng-repeat="data in vm.response track by data.id" class='minheight50 fontSize14 fontCiscoSansTT'>
+                <td><img ng-show="vm.hasAttachment(data)" src="/client/assets/images/attachment-icon.png"/></td>
+                <td class="auto-cursor fontColor0096d5" title="{{data.topicTitle}}">{{vm.truncateConversationTitle(data.topicTitle)}}</td>
+                <td>
+                <div class='row'>
+                  <div class='col-xs-6'>{{::data.ownerUsername}}</div>
+                  <div class='col-xs-6'>
+                    <div ng-show="!vm.isConversationDraft(data)">
+                    <div ng-show="!vm.isConversationDraft(data)" class="greenCircleDiv displayInlineBlock"
+                         title="{{data.conversation[0].status==='EMP_SUBMIT'?'Employee':'Manager'}}">
+                      {{vm.conversationSubmittedBy(data.conversation[0])}}
+                    </div>
+                    <div class="greenCircleDiv displayInlineBlock backgroundColor7CBC59"
+                         title="{{data.conversation[1].status==='MGR_SUBMIT'?'Manager':'Employee'}}"
+                         ng-show="data.convStatus==='CLOSE'">
+                      {{vm.conversationSubmittedBy(data.conversation[1])}}
+                    </div>
+                  </div>
+                  <div ng-show="vm.isConversationDraft(data)">
+                    <div class="displayInlineBlock">
+                      <span class="fa fa-save"></span>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                </td>
+                <td>
+                  <ul class="tags-list">
+                    <li ng-repeat="tag in ::data.tags">{{tag}}</li>
+                  </ul>
+                </td>
+                <td>
+                  <span ng-switch on="vm.getStatusOptionsConverstaion('{{::data.convStatus}}', '{{::data.ownerUsername}}', '{{::data.targetUsername}}')">
+                    <span class="animate-switch" ng-switch-when="1">
+                    <a class="pointer fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.viewConverstaion({{::data}})" translate="SYNCUP_CONVERSATION.TABLE_ACTION_VIEW">View</a>
+                  	</span>
+                    <span class="animate-switch" ng-switch-when="2">
+                    <a class="pointer fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.goToDeleteConversation({{::data}})" translate="SYNCUP_CONVERSATION.TABLE_ACTION_DELETE">Delete</a>&nbsp;&nbsp;
+                    <a class="pointer fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.shareWithTeamMember({{::data}})" translate="SYNCUP_CONVERSATION.TABLE_ACTION_SHARE">Share</a>
+                  	</span>
+                    <span class="animate-switch" ng-switch-when="3">
+                    <a class="pointer fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.respondToTeamMember({{::data}})" translate="SYNCUP_CONVERSATION.TABLE_ACTION_RESPOND">Respond</a>
+                  	</span>
+                  </span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <label class="fontCiscoSansTT fontSize14 fontColor0096d5 pull-right fontWeightNormal pointer" ng-click="vm.viewAllSyncUpConversations()"  translate="HOME.SYNC_VIEW_ALL_CONV_LINK">View All Sync Up Conversations</label>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Received Feedback" class='fontSize14' ng-click="vm.activateTab(2)">
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+          <div class="col-xs-5">
+            <button class="syncUpConversationsButton pull-left  fontColor676a72 fontCiscoSansTTBold fontSize14" ng-click='vm.requestNewFeedback(vm.selectedUser);' translate="FEEDBACK.TABLE_REQUEST_NEW_FEEDBACK" ng-show="vm.isRequestNewFeedbackButtonAvailable">Request New Feedback</button>
+          </div>
+          <div class="col-xs-7">
+            <div class="col-xs-9">
+              <div class="col-xs-12 padding-side-0">
+                <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize" items-per-page="vm.recordsPerPage" total-items="vm.totalRecord" ng-model="vm.currentPageFeedback" ng-change="vm.changePageFeedback()" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+              </div>
+            </div>
+            <div class="col-xs-3 padding-top-2 padding-side-0">
+			 <div class="select_style rounded divMinWidth110">
+              <select ng-model="vm.quarter" ng-options="quarter.id as quarter.display for quarter in vm.quarters" ng-change="vm.changedQuarterValue(vm.quarter)"></select>
+				<span></span>
+			 </div>
+            </div>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div class="col-xs-12 borderBottomF4F4F4"></div>
+        </div>
+        <div class="col-xs-12 paddingOverride">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+
+                <th class="{{vm.reverse1}} position-relative"
+                    ng-click='vm.reverse1=!vm.reverse1;vm.reverse2="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("title", vm.reverse1)'>
+                  <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_TITLE">Title</div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="{{vm.reverse2}} position-relative"
+                    ng-click='vm.reverse2=!vm.reverse2;vm.reverse1="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("requester", vm.reverse2)'>
+                  <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_REQUESTED_BY">Requested By</div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="{{vm.reverse3}} position-relative"
+                    ng-click='vm.reverse3=!vm.reverse3;vm.reverse1="";vm.reverse2="";vm.reverse4="";vm.reverse5=""; vm.sortColumn("provider", vm.reverse3)'>
+                  <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_PROVIDER">Provider</div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="{{vm.reverse4}} position-relative"
+                    ng-click='vm.reverse4=!vm.reverse4;vm.reverse1="";vm.reverse2="";vm.reverse3="";vm.reverse5=""; vm.sortColumn("feedbackStatus", vm.reverse4)'>
+                  <div class="borderRightSeparator fontSize14" translate="FEEDBACK.TABLE_STATUS">Status</div>
+                  <div class="heading1"></div>
+                </th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr ng-show="vm.isLoadActivityRunning" class="fontSize14 fontCiscoSansTT">
+                <td colspan="5" ng-show="vm.loading">
+                  <ajax-loader type="small"></ajax-loader>Loading Feedbacks...
+                </td>
+                <td colspan="5" ng-show="!vm.isLoadActivityRunning" translate="FEEDBACK.NO_FEEDBACK_MSG"></td>
+              </tr>
+              <tr ng-repeat="data in vm.reqrecFeedbackList track by data.id" ng-show="!vm.isLoadActivityRunning" class='minheight50'>
+                <td class="auto-cursor fontSize14 fontCiscoSansTT fontColor0096d5" title="{{data.title}}">{{vm.truncateConversationTitle(data.title)}}</td>
+                <td class='fontSize14 fontCiscoSansTT'>{{::data.requester || 'NA'}}</td>
+                <td class='fontSize14 fontCiscoSansTT'>{{::data.provider || 'NA'}}</td>
+                <td class='fontSize14 fontCiscoSansTT'>
+                  <div class="feedbackStatusIcon {{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).iconClass}} displayInlineBlock floatLeft marginTop5"></div><div class="marginLeft5 displayInlineBlock floatLeft fontSize14 fontCiscoSansTT">{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).statusString}}</div>
+                </td>
+                <td>
+                    <span ng-switch on="{{vm.fetchReqrecFeedbackStatus(data.feedbackStatus).actionCode}}">
+                      <span class="animate-switch" ng-switch-when="1">
+                       <p><a href="" class="marginRight5 fontSize14 fontCiscoSansTT fontColor0096d5" ng-click="vm.viewFeedback(data, 'view', reportee.username)" translate="FEEDBACK.TABLE_VIEW"></a></p>
+                      </span>
+                      <span class="animate-switch" ng-switch-when="2">
+                        <p><a href="" class="marginRight5 fontSize14 fontCiscoSansTT fontColor0096d5" ng-click="vm.viewFeedback(data, 'view', reportee.username)" translate="FEEDBACK.TABLE_VIEW"></a></p>
+                      </span>
+                      <span class="animate-switch" ng-switch-when="3">
+                        <p><a href="" class="marginRight5 fontSize14 fontCiscoSansTT fontColor0096d5" ng-click="vm.viewFeedback(data, 'view', reportee.username)" translate="FEEDBACK.TABLE_VIEW"></a></p>
+                      </span>
+                      <span class="animate-switch" ng-switch-default>
+                        <p><a href="" class="marginRight5 fontSize14 fontCiscoSansTT fontColor0096d5" ng-click="vm.viewFeedback(data, 'view', reportee.username)" translate="FEEDBACK.TABLE_VIEW"></a></p>
+                      </span>
+                    </span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <label class="fontCiscoSansTT fontSize14 fontColor0096d5 pull-right fontWeightNormal pointer" ng-click="vm.viewAllUserFeedback(vm.selectedUser);" translate="SYNCUP_CONVERSATION.HEADING_VIEW_ALL_FEEDBACK">View All Feedback</label>
+          </div>
+        </div>
+      </tab>
+      <tab ng-show="vm.showAlternateTab" heading="Alternate People Leader" class='fontSize14' ng-click="vm.activateTab(3)">
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+          <div class="col-xs-5">
+            <button ng-show="vm.isDrilldown" class="syncUpConversationsButton pull-left  fontColor676a72 fontCiscoSansTTBold fontSize14" ng-click='vm.addAlternate();' translate="SYNCUP_CONVERSATION.HEADING_ADD_ALTERNATE_MANAGER">Add Alternate Manager</button>
+          </div>
+          <div class="col-xs-7">
+            <div class="col-xs-9">
+              <div class="col-xs-12 padding-side-0">
+                <pagination boundary-links="true" num-pages="vm.numPages" max-size="vm.maxSize" items-per-page="vm.recordsPerPage" total-items="vm.totalRecordAlternate" ng-model="vm.currentPageAlternate" ng-change="vm.changePageAlternate()" class="pagination-sm pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+              </div>
+            </div>
+            <div class="col-xs-3 padding-top-2 padding-side-0"></div>
+          </div>
+          <div class="clearfix">&nbsp;</div>
+          <div class="col-xs-12 borderBottomF4F4F4"></div>
+        </div>
+        <div class="col-xs-12 paddingOverride">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th class="{{vm.reverse1}} position-relative"
+                    ng-click='vm.reverse1=!vm.reverse1;vm.reverse2="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn_alt("proxy_username", vm.reverse1)'>
+                  <div class="borderRightSeparator fontSize14" translate="ALTERNATE.MANAGER_NAME"></div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="{{vm.reverse2}} position-relative"
+                    ng-click='vm.reverse2=!vm.reverse2;vm.reverse1="";vm.reverse3="";vm.reverse4="";vm.reverse5=""; vm.sortColumn_alt("start_date", vm.reverse2)'>
+                  <div class="borderRightSeparator fontSize14" translate="ALTERNATE.START_DATE"></div>
+                  <div class="heading1"></div>
+                </th>
+                <th class="{{vm.reverse3}} position-relative"
+                    ng-click='vm.reverse3=!vm.reverse3;vm.reverse1="";vm.reverse2="";vm.reverse4="";vm.reverse5=""; vm.sortColumn_alt("end_date", vm.reverse3)'>
+                  <div class="borderRightSeparator fontSize14" translate="ALTERNATE.END_DATE"></div>
+                  <div class="heading1"></div>
+                </th>
+                <th>
+                  <div class="borderRightSeparator fontSize14" translate="ALTERNATE.ACTION"></div>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-show="!vm.AlternateTeamDetails" class="fontSize14 fontCiscoSansTT">
+                <td colspan="4" ng-show="vm.loadingAlternate">
+                  <ajax-loader type="small"></ajax-loader>Loading Alternate Managers/Leaders...
+                </td>
+                <td colspan="4" ng-show="!vm.loadingAlternate" translate="ALTERNATE.NO_ALTERNATE_MGR_MSG"></td>
+              </tr>
+              <tr ng-repeat="data in vm.AlternateTeamDetails track by data.id" class='minheight50 fontSize14 fontCiscoSansTT'>
+                <td class='fontColor0096d5'>{{::data.proxy_username}}</td>
+                <td ng-bind="vm.getDateOnly(data.start_date)"></td>
+                <td ng-bind="vm.getDateOnly(data.end_date)"></td>
+                <td>
+                  <p><a href="" class="marginRight5 fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.viewAlternate(data)" translate="FEEDBACK.TABLE_VIEW"></a></p>
+                  <p><a ng-show="vm.isDrilldown" href="" class="marginRight5 fontSize14 fontCiscoSansTT fontWrightNormal fontColor0096d5" ng-click="vm.deallocateAlternate(data)" translate="ALTERNATE.TABLE_DEALLOCATE">Deallocate</a></p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <div class="modal-footer borderOverride">
+  </div>
+</script>

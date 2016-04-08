@@ -1,0 +1,181 @@
+<div class="container-fluid">
+  <div class="row marginBottom20">
+      <!-- <div class="col-xs-12">
+            <label class="marginTop40 fontSize20 fontCiscoSansTTLight" translate="MAIN_HEADER_NAV.CONVERSATION_DETAILS_HEADING"></label>
+      </div> -->
+      <div class="marginTop20 col-xs-12">
+      		<div class="img-circle img-responsive teamPersonImage">
+      			<img src="http://wwwin.cisco.com/dir/photo/std/{{vm.conversationOwner}}.jpg"/>
+      		</div>
+         	<label class="fontSize18 fontCiscoSansTT fontColor0096d5 teamPersonName">{{vm.convOwnerFullName}}</label>
+      </div>
+ 	</div>
+    <div class="row">
+    	<div class="col-xs-12">
+        	<div class="borderTopColord76631 conversation-box auto-cursor col-xs-12 padding10 marginBottom100">
+    	
+    	<div class="col-xs-12">
+            <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TITLE"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+            <input class="titleTextBox" type="text" required placeholder="Enter Title" ng-model="vm.conversationTitle" ng-model-options="{allowInvalid: true}"/>
+        </div>
+        <div class="col-xs-12 marginTop20">
+            <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_FOR"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+            <div class="row">
+            	<div class="col-xs-7">
+                	<div class="row">
+                    	<div class="col-xs-1">
+                    		<input class="teamConversationRadio" type="radio" id="radio01" name="radio" value="false" ng-click="vm.configureTeamConversation($event)" ng-checked="vm.radioBtn1Checked" ng-disabled="vm.radioBtn1Disable == 'true'"/>
+				  			<label for="radio01"><span></span></label>
+                   	 	</div>
+	                    <div class="col-xs-10">
+	                        <span class="dropdown" dropdown>
+	                          <button id="teamMemberSelector" class="btn btn-default dropdown-toggle form-control" type="button" aria-expanded="true" dropdown-toggle ng-disabled="!vm.isTeamMemberSelectEnabled">
+	                          <label class="textAlignLeft pull-left fontCiscoSansTTLight fontSize16">&nbsp;{{vm.selectedTeamMember}}</label>
+	                          <span class="caret pull-right marginTop8"></span>
+	                          </button>
+	                          <ul class="dropdown-menu fullWidth dropdownStyle">
+	                            <li ng-repeat="teamMember in vm.teamHierarchy">
+	                              <a ng-click="vm.changeTeamMember(teamMember)">
+	                              	<div class="img-circle img-responsive teamPersonImage">
+	      								<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+	      							</div>
+	      							<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+	                            </li>
+	                            <li ng-repeat="teamMember in vm.altTeamHierarchy">
+	                              <a ng-click="vm.changeTeamMember(teamMember)">
+	                              	<div class="img-circle img-responsive teamPersonImage">
+	      								<img src="http://wwwin.cisco.com/dir/photo/std/{{teamMember.username}}.jpg"/>
+	      							</div>
+	      							<label class="teamPersonName">{{teamMember.firstName}}&nbsp;{{teamMember.lastName}}</label></a>
+	                            </li>
+	                          </ul>
+	                         </span>
+	                    </div>
+                   	</div>
+                </div>
+                <div class="col-xs-5">
+                	<input class="teamConversationRadio" type="radio" id="radio02" name="radio" value="true" ng-click="vm.configureTeamConversation($event)" ng-checked="vm.radioBtn2Checked"/>
+					<label for="radio02" class="fontCiscoSansTTLight"><span></span>Talent Sync Up&nbsp;</label>
+					<img src="../../../client/assets/images/grey-infor-icon.png"/>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 marginTop20">
+            <label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_DETAILS"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+        </div>
+        <div class="col-xs-12">
+            <cpc-tiny-mce></cpc-tiny-mce>
+            <!-- <div class="position-absolute uploader-position col-xs-10 padding-side-0">
+            			<div ng-show="vm.showAttachments" ng-repeat="(key, val) in vm.attachmentId">
+                    		<label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10">
+                    			<a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  
+                    		</label>
+                    		<i class="fa fa-close fa-lg" ng-click="vm.deleteAttachment('{{key}}')"></i>
+                    		<a ng-click="vm.deleteAttachment('{{key}}')">Delete</a>
+                    	</div>
+                        <div ng-show="vm.uploader.queue.length" class="col-xs-12 padding-side-0">
+                            <div ng-repeat="item in vm.uploader.queue" class="col-xs-12 padding-side-0">
+                                <div style="border: 1px solid darkgray;">
+                                    <div class="col-xs-6">{{ item.file.name }}</div>
+                                    <div class="col-xs-5" ng-show="vm.uploader.isHTML5" style="padding-top: 2px;">
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1" style="padding-top: 2px;">
+                                        <i class="fa fa-close fa-lg pull-right" ng-click="item.remove()"></i>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div> -->
+        </div>
+        
+        <div class="col-xs-12 marginBottom30">
+        	<div class="row">
+            <div class="col-xs-12">
+            	<label class="fontSize16 fontWeightBold" translate="SYNCUP_CONVERSATION_DETAILS.LABEL_TAGS"></label><label class="fontSize16 fontCiscoSansTT required">&nbsp;*</label>
+            </div>
+            <div class="col-xs-12" ng-show="vm.isTeamMemberSelectEnabled">
+            <fieldset class="marginTop20 fontCiscoSansTTLight">
+            	<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <input type="checkbox" ng-model="vm.selectedTags[0]" name="Performance" id="checkboxG1" class="css-checkbox convTagCheckbox" ng-checked="{{vm.isPerformanceChecked}}"/><label for="checkboxG1" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_PERFORMANCE"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <input type="checkbox" ng-model="vm.selectedTags[1]" name="Development" id="checkboxG52" class="css-checkbox convTagCheckbox" ng-checked="{{vm.isDevelopmentChecked}}"/><label for="checkboxG52" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_DEVELOPMENT"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <input type="checkbox" ng-model="vm.selectedTags[2]" name="Alignment" id="checkboxG53" class="css-checkbox convTagCheckbox" ng-checked="{{vm.isAlignmentChecked}}"><label for="checkboxG53" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_ALIGNMENT"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <input type="checkbox" ng-model="vm.selectedTags[3]" name="You" id="checkboxG55" class="css-checkbox convTagCheckbox" ng-checked="{{vm.isYouChecked}}"/><label for="checkboxG55" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_YOU"></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                
+                </div>
+        	</fieldset>
+            </div>
+            <div class="col-xs-12" ng-show="!vm.isTeamMemberSelectEnabled">
+            	<fieldset class="marginTop20 fontCiscoSansTTLight">
+                	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                	<input type="checkbox" disabled="disabled" name="Talent Sync Up" id="checkboxG56" class="css-checkbox" checked="checked"/><label for="checkboxG56" class="css-label marginLeft5 fontSize18" translate="SYNCUP_CONVERSATION_DETAILS.CHECK_TALENT"></label>
+                    </div>
+                </fieldset>
+            </div>
+            </div>
+        </div>
+        <div class="uploader-position col-xs-10 padding-side-0">
+            			<div ng-show="vm.showAttachments" ng-repeat="(key, val) in vm.attachmentId">
+                    		<label class="fontSize16 fontCiscoSansTT fontColor87898f divHeight25 backgroundColorE0E1E4 padding8 borderRadius5 autoWidth marginRight10">
+                    			<a href="/performance/api/feedback/getAttachment/{{key}}" target="_blank">{{val}}</a>  
+                    		</label>
+                    		<i class="fa fa-close fa-lg" ng-click="vm.deleteAttachment('{{key}}')"></i>
+                    		<!-- <a ng-click="vm.deleteAttachment('{{key}}')">Delete</a> -->
+                    	</div>
+                        <!-- <div ng-show="vm.uploader.queue.length" class="col-xs-12 padding-side-0"> -->
+                            <div ng-repeat="item in vm.uploader.queue" class="col-xs-12 padding-side-0">
+                                <div style="border: 1px solid darkgray;">
+                                    <div class="col-xs-6">{{ item.file.name }}</div>
+                                    <div class="col-xs-5" ng-show="!item.progress" style="padding-top: 2px;"></div>
+                					<div class="col-xs-5" ng-show="item.progress" style="padding-top: 2px;">
+                                        <div class="progress" style="margin-bottom: 0;">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1" style="padding-top: 2px;">
+                                        <i class="fa fa-close fa-lg pull-right" ng-click="item.remove()"></i>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        <!-- </div> -->
+         </div>
+        <div class="col-xs-12">
+        	<div class="row borderTop7B7B7B">
+            	<div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                	<label for="file-upload" class="custom-file-upload">
+                        <img ng-src="/client/assets/images/attachment-icon.png" alt=""/>
+                    </label>
+                    <input id="file-upload" type="file" nv-file-select="" uploader="vm.uploader" multiple/>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-11 col-lg-11 textAlignRight">
+                	<button ng-disabled="vm.deletePossible == 'false'" class="{{vm.deleteEnable}} deleteButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_DELETE" ng-click="vm.deleteConversation()"></button>
+                	<button ng-disabled="vm.cancelPossible == 'false'" class="cancelButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_CANCEL" ng-click="vm.cancelClicked()"></button>
+                	<button ng-disabled="vm.saveDraftPossible == 'false'" class="saveAsDraftButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SAVE_AS_DRAFT" ng-click="vm.saveConversationAsDraftService()"></button>
+                    <button ng-disabled="vm.shareManagerPossible == 'false'"  ng-show=!vm.isTeamMemberSelectEnabled class="shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_MANAGER" ng-click="vm.shareConversationWithManagerService()"></button>
+                    <button ng-disabled="vm.shareTeamMemberPossible == 'false'" ng-show=vm.isTeamMemberSelectEnabled class="shareWithTeamButton marginTop20" translate="SYNCUP_CONVERSATION_DETAILS.BUTTON_SHARE_WITH_TEAM_MEMBER" ng-click="vm.shareConversationWithTeamMemberService()"></button>
+                </div>
+            </div>
+        </div>
+      </div>	
+        </div>
+    </div>
+</div>

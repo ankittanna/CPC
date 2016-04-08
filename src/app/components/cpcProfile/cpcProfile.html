@@ -1,0 +1,73 @@
+<div class="container-fluid paddingOverride">
+  <div class="container">
+    <div class="row">
+
+<div class="col-xs-12 paddingOverride" ng-click="vm.toggleTeamList(vm.userprofile)">
+    <!-- <div class="col-xs-12 hidden-xs hidden-sm hidden-md hidden-lg" id="teamNavigation">
+        <label>
+            <span class="glyphicon glyphicon-arrow-left"></span> Team
+        </label>
+    </div> -->
+    <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 visible-md visible-lg hidden-xs hidden-sm" >
+        <div class="img-circle img-responsive profilePhoto">
+            <img class="img-responsive" alt="{{vm.userprofile.username}}" ng-src="{{vm.userprofile.profileImageLarge}}" ng-click="vm.showTeamList()">
+        </div>
+        <span class="profileIcon" ng-show="vm.userprofile.isPeopleManager=='Y'">
+        	<img alt="People manager" title="People manager" src="/client/assets/images/team-icon-28px.png">
+        </span>
+    </div>
+    
+    <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 visible-xs visible-sm hidden-md hidden-lg" >
+        <div style="float:left" class="img-circle img-responsive profilePhotoSmall visible-xs visible-sm hidden-md hidden-lg">
+            <img class="img-responsive" alt="{{vm.userprofile.username}}" ng-src="{{vm.userprofile.profileImageSmall}}" ng-click="vm.showTeamList()">
+        </div>
+        <span class="profileIconSmall" ng-show="vm.userprofile.isPeopleManager=='Y'">
+        	<img alt="People manager" title="People manager" src="/client/assets/images/team-icon-20px.png" style="margin-left:-12px;padding-top:50px;position:absolute">
+        </span>
+    </div>
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-10 marginTop10 visible-md visible-lg hidden-xs hidden-sm">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 paddingOverride">
+            <div class="col-xs-12 paddingOverride">
+                <label class="fontCiscoSansTT fontSize22 blueFont" >{{vm.userprofile.firstName}}</label>
+                &nbsp;
+                <label class="fontCiscoSansTT fontSize22 blueFont" >{{vm.userprofile.lastName}}</label>
+                &nbsp;
+                <!-- <span class="visible-xs visible-sm hidden-md hidden-lg">(<label class="fontCiscoSansTTLight fontSize18 lightGreyFont" >{{vm.userprofile.username}}</label>)</span> -->
+            </div>
+            <div class="col-xs-12 paddingOverride">
+			     <label class="fontCiscoSansTTLight fontSize18 lightGreyFont hidden-xs hidden-sm visible-md visible-lg" >{{vm.userprofile.username}}</label>
+            </div>
+            <div class="col-xs-12 paddingOverride">
+			<label class="fontCiscoSansTT fontSize18 lightGreyFont" >{{vm.userprofile.publicJobTitle}}</label><br/>
+			<label class="hidden-xs hidden-sm visible-md visible-lg fontCiscoSansTTLight fontSize18 lightGreyFont" >{{vm.userprofile.departmentName}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-7 col-sm-8 col-md-10 col-lg-10 visible-xs visible-sm hidden-md hidden-lg">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 paddingOverride">
+            <div class="col-xs-12 paddingOverride">
+                <label class="fontCiscoSansTT fontSize20 blueFont marginBottomOverride" >{{vm.userprofile.firstName}}</label>
+                &nbsp;
+                <label class="fontCiscoSansTT fontSize20 blueFont marginBottomOverride" >{{vm.userprofile.lastName}}</label>
+                &nbsp;
+                <span class="visible-xs visible-sm hidden-md hidden-lg">(<label class="fontCiscoSansTTLight fontSize18 lightGreyFont" >{{vm.userprofile.username}}</label>)</span>
+            </div>
+            <!-- <div class="col-xs-12 paddingOverride">
+			     <label class="fontCiscoSansTTLight fontSize18 lightGreyFont hidden-xs hidden-sm visible-md visible-lg" >{{vm.userprofile.username}}</label>
+            </div> -->
+            <div class="col-xs-12 paddingOverride">
+			<label class="fontCiscoSansTT fontSize18 lightGreyFont" >{{vm.userprofile.publicJobTitle}}</label><br/>
+			<label class="hidden-xs hidden-sm visible-md visible-lg fontCiscoSansTTLight fontSize18 lightGreyFont" >{{vm.userprofile.departmentName}}</label>
+			</div>
+		</div>
+	</div>
+    <div ng-show="vm.userprofile.isPeopleManager=='Y'" class="col-xs-1 col-sm-1 visible-xs visible-sm hidden-md hidden-lg paddingOverride">
+        <span id="teamCarret" class="fa fa-chevron-right marginTop30" ></span>
+    </div>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
